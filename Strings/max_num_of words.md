@@ -1,3 +1,4 @@
+```java
 class Solution {
     public int mostWordsFound(String[] sentences) {
         int barr[]=new int[sentences.length];
@@ -21,3 +22,4 @@ class Solution {
         return max;
         }
     }
+```
