@@ -1,5 +1,4 @@
 # 1752. Check if Array Is Sorted and Rotated
-
 [Problem Link]([https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/](https://www.geeksforgeeks.org/problems/second-largest3735/1))
 
 ## Approach - 1
