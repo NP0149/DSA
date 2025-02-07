@@ -1,5 +1,6 @@
 largest element in a array
-[problem link][https://www.geeksforgeeks.org/problems/largest-element-in-array4009/0]
+[Problem link][https://www.geeksforgeeks.org/problems/largest-element-in-array4009/0]
+```Java
 class Solution {
     public static int largest(int[] arr) {
         int n=arr.length;
@@ -12,3 +13,5 @@ class Solution {
        return max; // code here
     }
 }
+```
+time complexity:o(N);
