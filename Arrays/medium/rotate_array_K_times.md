@@ -1,5 +1,5 @@
 # ROTATING ARRAY K TIMES
-[Problem link](https://leetcode.com/problems/rotate-array
+[Problem link](https://leetcode.com/problems/rotate-array)
 
 Approch:
 1)we need to reverse the total array first
