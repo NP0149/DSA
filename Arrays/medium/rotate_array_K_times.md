@@ -1,5 +1,6 @@
 # ROTATING ARRAY K TIMES
-[Problem link](https://leetcode.com/problems/rotate-array/)
+[Problem link](https://leetcode.com/problems/rotate-array
+
 Approch:
 1)we need to reverse the total array first
 2)reverse the array from 0 to k-1;
