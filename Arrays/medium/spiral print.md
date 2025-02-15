@@ -9,7 +9,7 @@ every time you travel from minimum row to maximum row and minimum column to maxi
 
 
 ```Java
-lass Solution {
+class Solution {
     public List<Integer> spiralOrder(int[][] arr) {
         int n=arr.length;
         int m=arr[0].length;
