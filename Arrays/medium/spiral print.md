@@ -4,8 +4,8 @@
 
 # Approch
 
-If you wanna traverse a row you need to focus on columns anf if You wanna traverse a column you need to fovus on rows
-every time you travel from minimum row to maximum column and minimum column to maximum column and every time you need increase the minimum row and column by 1 and decrease the maximum row and column by 1
+If you wanna traverse a row you need to focus on columns anf if You wanna traverse a column you need to focus on rows
+every time you travel from minimum row to maximum row and minimum column to maximum column and every time you need increase the minimum row and column by 1 and decrease the maximum row and column by 1
 
 
 ```Java
