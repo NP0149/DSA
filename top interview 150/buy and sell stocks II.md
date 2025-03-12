@@ -1,5 +1,7 @@
 # buy and sell stocks II
 
+[Problem Link](m/problems/best-time-to-buy-and-sell-stock-ii/description/?envType=study-plan-v2&envId=top-interview-150)
+
 ```
  class Solution {
     public int maxProfit(int[] arr) {
