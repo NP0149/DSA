@@ -1,5 +1,7 @@
 # kadanes algorithm
 
+[Problem Link](https://leetcode.com/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-interview-150)
+
 ```
  class Solution {
     public int maxSubArray(int[] nums) {
