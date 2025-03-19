@@ -35,4 +35,58 @@ class Solution {
 
 # Complexities
 
-Time:O
+Time:O(N)
+
+Space:O(N)
+
+# Approach-II
+
+
+```
+
+class Solution {
+    public int[] findErrorNums(int[] arr) {
+        Arrays.sort(arr);
+         int n = arr.length;
+        int nums[] = new int[n];
+        int j = 0;
+        int repeat[]=new int[2];
+        if(n==2 || n==1){
+            nums[0]=arr[0];
+            repeat[0]=arr[0];
+        }
+        for (int i = 0; i < arr.length; i++) {
+                    // Check if the current element is unique
+                    if ((i == 0 || arr[i] != arr[i - 1]) && (i == arr.length - 1 || arr[i] != arr[i + 1])) {
+                    nums[j]=arr[i];
+                    j++;
+                    }
+                    else if((i==0 || arr[i]!=arr[i-1]) && (i==arr.length-1 || arr[i]==arr[i+1])){
+                        nums[j]=arr[i];
+                        repeat[0]=arr[i];
+                        j++;
+            }
+
+            }
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=nums[i];
+        }
+        int miss=(n*(n+1)/2)-sum;
+        repeat[1]=miss;
+        return repeat;
+        }
+
+
+}
+```
+
+# Complexities
+
+Time:O(nlogn)
+
+Space:O(N):
+
+
+
+
