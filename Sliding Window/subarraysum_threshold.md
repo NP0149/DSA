@@ -33,3 +33,11 @@ class Solution {
 Time:O(Nk);
 
 Space:O(1);
+
+# Approach-II
+
+through sliding window
+
+```
+
+
