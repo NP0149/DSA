@@ -85,3 +85,35 @@ class Solution {
 time:O(nlogn);
 
 Space:O(1);
+
+
+# SLIDING WINDOW APPROACH
+
+```
+public class scoresdiff{
+    public static int finddiff(int arr[],int k) {
+        int n = arr.length;
+        Arrays.sort(arr);
+        int temp = Integer.MAX_VALUE;
+        int sub = 0;
+        int j = 0;
+        int l = 0;
+        for (int r = 0; r < n; r++) {
+            if (r-l == k) {
+                l++;
+            }
+            if (r-l+ 1 == k) {
+                temp = Math.min(temp, Math.abs(arr[l] - arr[r]));
+            }
+        }
+        return temp;
+    }
+```
+
+# Complexity Analysis
+
+time:O(nlogn);
+
+Space:O(1);
+
+
