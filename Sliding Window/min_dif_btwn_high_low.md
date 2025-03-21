@@ -1,6 +1,6 @@
 # Minimum difference between highest and lowest
 
-[Problem Link](https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/submissions/1581070110/)
+[Problem Link](https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/)
 
 
 # Approach-I
