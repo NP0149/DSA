@@ -1,6 +1,6 @@
 # Check whether the number is palindrome or not 
 
-Problem Link(https://leetcode.com/problems/palindrome-number/)
+[Problem Link](https://leetcode.com/problems/palindrome-number/)
 
 # Approach-I
 
