@@ -24,7 +24,7 @@ public class pat_1{
         }
 ```
 
-# pattern-II
+# pattern-2
 
 ```
 *
