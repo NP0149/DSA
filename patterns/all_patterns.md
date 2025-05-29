@@ -509,5 +509,28 @@ public class pat_1 {
 }
 ```
 # Pattern-19
+```
+E
+DE
+CDE
+BCDE
+ABCDE
+
+import java.util.*;
+public class pat_1 {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter number of rows");
+        int n = sc.nextInt();
+        int a = 1;
+        for(int i=n;i>=0;i--){
+            for(int j=i;j<n;j++){
+                System.out.print((char)(65+j));
+            }
+            System.out.println();
+        }
+    }
+}
+```
 
 
