@@ -1,4 +1,4 @@
-# pattern-1
+# Pattern-1
 
 
 ```
@@ -24,7 +24,7 @@ public class pat_1{
         }
 ```
 
-# pattern-2
+# Pattern-2
 
 ```
 *
@@ -49,7 +49,7 @@ public class pat_1{
 }
 ```
 
-# pattern-3
+# Pattern-3
 
 ```
 * * * *
@@ -529,6 +529,101 @@ public class pat_1 {
             }
             System.out.println();
         }
+    }
+}
+```
+# Pattern-20
+
+```
+********
+***  ***
+**    **
+*      *
+*      *
+**    **
+***  ***
+********
+
+
+import java.util.*;
+public class pat_1 {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter number of rows");
+        int n = sc.nextInt();
+        int a = 1;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n-i;j++){
+                System.out.print("*");
+            }
+            for(int k=0;k<2*i;k++){
+                System.out.print(" ");
+            }
+            for(int t=0;t<n-i;t++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for(int i=n;i>0;i--){
+            for(int j=0;j<=n-i;j++){
+                System.out.print("*");
+            }
+            for(int k=2*(i-1);k>0;k--){
+                System.out.print(" ");
+            }
+            for(int t=0;t<=n-i;t++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+    }
+}
+```
+# Pattern-21
+
+```
+*      *
+**    **
+***  ***
+********
+***  ***
+**    **
+*      *
+
+
+import java.util.*;
+public class pat_1 {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter number of rows");
+        int n = sc.nextInt();
+        int a = 1;
+        for(int i=n;i>0;i--){
+            for(int j=0;j<=n-i;j++){
+                System.out.print("*");
+            }
+            for(int k=2*(i-1);k>0;k--){
+                System.out.print(" ");
+            }
+            for(int t=0;t<=n-i;t++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for(int i=1;i<n;i++){
+            for(int j=0;j<n-i;j++){
+                System.out.print("*");
+            }
+            for(int k=0;k<2*i;k++){
+                System.out.print(" ");
+            }
+            for(int t=0;t<n-i;t++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
     }
 }
 ```
