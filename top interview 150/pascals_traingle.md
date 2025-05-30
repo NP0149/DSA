@@ -41,4 +41,38 @@ Time:O(r^2);
 Space:O(r^2);
 
 
+# Approach-II
 
+1)we can use simple array to print pascals triangle 
+
+```
+import java.lang.reflect.Array;
+import java.util.*;
+public class al{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter n");
+        int n=sc.nextInt();
+       int arr[][]=new int[20][20];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<=i;j++){
+                if(i==0 || j==i || j==0){
+                    arr[i][j]=1;
+                    System.out.print("1 ");
+                }
+                else{
+                    arr[i][j]=arr[i-1][j-1]+arr[i-1][j];
+                  System.out.print(arr[i][j]+" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+# Complexities
+
+Time:O(n^2);
+
+Space:O(1);
