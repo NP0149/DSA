@@ -11,3 +11,7 @@ why only hashmap
 4)map.values();-->returns set of values
 
 5)map.entrySet()-->both keys and values will be printed
+
+6)to compare two hashmaps we need to use normal string comparision methods also
+ map1.equals(mp2)
+ map1.equalsIgnoreCase(map2)
