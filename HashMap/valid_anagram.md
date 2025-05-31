@@ -1,6 +1,6 @@
 # Valid Anagram
 
-[Problem Link](https://leetcode.com/problems/two-sum/description/)
+[Problem Link](https://leetcode.com/problems/valid-anagram/description/)
 # Approach-I
 
 anagram means that occurance(frequency) of the letters in a word should be same,it is case sensitive also...
