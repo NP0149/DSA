@@ -16,6 +16,9 @@ public class hashset {
         hs.remove("divya");
         System.out.println(hs.contains("divya"));//false
         System.out.println(hs.size());//2
+        for(String s:hs){
+         System.out.println(s);
+}
     }
 
 }
