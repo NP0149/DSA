@@ -32,3 +32,28 @@ class Solution {
 Time:O(n);
 
 Space:O(n);//hashmap
+
+
+
+# Approach-II
+
+xor operation eleminates the duplicate elements
+
+```
+class Solution {
+    public int singleNumber(int[] nums) {
+        int res=0;
+        int n=nums.length;
+        for(int i=0;i<n;i++){
+            res^=nums[i];
+        }
+        return res;
+    }
+}
+```
+
+# Complexties
+
+Time:o(n);
+
+Space:O(1)
