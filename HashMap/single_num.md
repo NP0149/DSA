@@ -2,6 +2,8 @@
 
 [Problem Link](https://leetcode.com/problems/single-number/submissions/1652448168/)
 
+# Approach-I
+
 ```
 class Solution {
     public int singleNumber(int[] nums) {
