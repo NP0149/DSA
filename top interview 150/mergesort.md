@@ -2,6 +2,8 @@
 
 [Problem Link](https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)
 
+# Approach-I
+
 ```
 class Solution {
     public void merge(int[] nums1, int n1, int[] nums2, int n2) {
@@ -29,3 +31,45 @@ class Solution {
     }
 }
 ```
+# Complexties
+
+Time:O(n1+n2)
+
+Space:O(n1+n2)
+
+
+
+# Approach-II(Efficient)
+
+```
+class Solution {
+    public void merge(int[] nums1, int n1, int[] nums2, int n2) {
+     int idx=n1+n2-1;
+     int i=n1-1;
+     int j=n2-1;
+     while(i>=0 && j>=0){
+        if(nums1[i]>nums2[j]){
+            nums1[idx]=nums1[i];
+            idx--;
+            i--;
+        }
+        else{
+            nums1[idx]=nums2[j];
+            idx--;
+            j--;
+        }
+     }
+     while(j>=0){
+        nums1[idx]=nums2[j];
+        idx--;
+        j--;
+     }
+}
+}
+```
+# Complexities
+
+Time:O(n1+n2)
+
+Space:O(1)
+
