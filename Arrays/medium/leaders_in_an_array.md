@@ -6,9 +6,8 @@
 
 1)traverse the array from last ,the rightmost element in the array is the leader of the array
 
-2) we need to add the elements into the array only if they are greater than or equal to leader and everytime we need to update the leader
-   
-   
+2)we need to add the elements into the array only if they are greater than or equal to leader and everytime we need to update the leader
+
 3)if the array element is not greater than leader then put -1 in it place and add the elements into the array only if value of array ele
 not equal to -1
 
