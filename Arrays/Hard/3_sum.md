@@ -45,3 +45,51 @@ public class prac {
 Time:O(n^3);
 
 Space:O(m);//m is the number os unique elements
+
+
+
+# Approach-II
+
+1)the third element becomes -(arr[i]+arr[j]),store it in temp and then check if that is present in the array
+
+
+```
+import java.util.*;
+
+public class prac {
+    public static void main(String[] args) {
+        HashSet<List<Integer>> set = new HashSet<>();
+        int arr[] = {-1, 0, 1, 2, 0, -2};
+        int n = arr.length;
+        int target = 0;
+        HashMap<Integer,Integer> hm=new HashMap<>();
+
+        for(int i=0;i<n;i++){
+            hm.put(arr[i],i);
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int temp = -1 * (arr[i] + arr[j]);
+                if (hm.containsKey(temp) && temp!=arr[i] && temp!=arr[j]) {
+                    if (arr[i] + arr[j] + temp == target) {
+                        List<Integer> triplet = new ArrayList<>();
+                        triplet.add(arr[i]);
+                        triplet.add(arr[j]);
+                        triplet.add(temp);
+                        Collections.sort(triplet);
+                        set.add(triplet);
+
+                    }
+                }
+            }
+        }
+        System.out.println(set);
+    }
+}
+```
+
+# Compelxities
+
+Time:O(n^2)
+
+Space:O(n^2)//hashset of triplets
