@@ -54,38 +54,46 @@ Space:O(m);//m is the number os unique elements
 
 
 ```
-import java.util.*;
-
-public class prac {
-    public static void main(String[] args) {
-        HashSet<List<Integer>> set = new HashSet<>();
-        int arr[] = {-1, 0, 1, 2, 0, -2};
+class Solution {
+    public List<List<Integer>> threeSum(int[] arr) {
+        List<List<Integer>> li = new ArrayList<>();
         int n = arr.length;
-        int target = 0;
-        HashMap<Integer,Integer> hm=new HashMap<>();
+        HashSet<List<Integer>> hs = new HashSet<>();
+        HashMap<Integer, Integer> hm = new HashMap<>();
 
-        for(int i=0;i<n;i++){
-            hm.put(arr[i],i);
+        for (int i = 0; i < n; i++) {
+            hm.put(arr[i], hm.getOrDefault(arr[i], 0) + 1);
         }
+
+        if (arr.length == 3) {
+            if (arr[0] + arr[1] + arr[2] == 0) {
+                List<Integer> l = Arrays.asList(arr[0], arr[1], arr[2]);
+                Collections.sort(l);
+                hs.add(l);
+            }
+        }
+
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 int temp = -1 * (arr[i] + arr[j]);
-                if (hm.containsKey(temp) && temp!=arr[i] && temp!=arr[j]) {
-                    if (arr[i] + arr[j] + temp == target) {
-                        List<Integer> triplet = new ArrayList<>();
-                        triplet.add(arr[i]);
-                        triplet.add(arr[j]);
-                        triplet.add(temp);
-                        Collections.sort(triplet);
-                        set.add(triplet);
-
+                if (hm.containsKey(temp)) {
+                    int count = 0;
+                    if (arr[i] == temp) count++;
+                    if (arr[j] == temp) count++;
+                    if (hm.get(temp) > count) {
+                        List<Integer> l = Arrays.asList(arr[i], arr[j], temp);
+                        Collections.sort(l);
+                        hs.add(l);
                     }
                 }
             }
         }
-        System.out.println(set);
+
+        li.addAll(hs);
+        return li;
     }
 }
+
 ```
 
 # Compelxities
