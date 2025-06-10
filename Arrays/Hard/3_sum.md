@@ -101,3 +101,52 @@ class Solution {
 Time:O(n^2)
 
 Space:O(n^2)//hashset of triplets
+
+
+# Approach-III
+
+
+```
+class Solution {
+    public List<List<Integer>> threeSum(int[] arr) {
+        List<List<Integer>> li=new ArrayList<>();
+        Arrays.sort(arr);
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            if(i>0 && arr[i]==arr[i-1]){
+                continue;
+            }
+            int j=i+1;
+            int k=n-1;
+            while(j<k){
+            int sum=arr[i]+arr[j]+arr[k];
+            if(sum<0){
+                j++;
+            }
+            else if(sum>0){
+                k--;
+            }
+            else{
+                List<Integer> l=new ArrayList<>();
+                l.add(arr[i]);
+                l.add(arr[j]);
+                l.add(arr[k]);
+                li.add(l);
+                j++;
+                k--;
+                while(j<k && arr[j]==arr[j-1]) j++;
+                while(j<k && arr[k]==arr[k+1]) k--;
+            }
+        }
+    }
+    return li;
+}
+}
+```
+
+# Complexities
+
+Time:O(n^2);
+
+Space:O(1)// for auxillary
+      O(n^2) //including output
