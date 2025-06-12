@@ -70,7 +70,7 @@ public class Sum_4 {
 
 Time:O(n^3)//three fixed loops
 
-Space:O(n^3)//for Set<List<Integer>>~~for temporary set O(n)
+Space:O(n^3)//for Set<List<Integer>> and for temporary set O(n)
 
      
 
