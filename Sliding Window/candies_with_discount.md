@@ -30,7 +30,7 @@ class Solution {
 
 # Complexity Analysis
 
-Time:O(NlogN);
+Time:O(N log N);
 
 Space:O(1);
 
