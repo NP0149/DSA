@@ -1,5 +1,7 @@
 # Lower Bound
 
+the number should be arr[index]>=x,x is the given value
+
 ```
 class Solution {
     public int lowerBound(int[] arr, int x) {
