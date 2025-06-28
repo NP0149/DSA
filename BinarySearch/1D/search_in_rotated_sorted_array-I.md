@@ -1,4 +1,4 @@
-# Search In a Rotated sorted array
+# Search In a Rotated sorted array-I
 
 [Problem Link](https://leetcode.com/problems/search-in-rotated-sorted-array/submissions/1678929566/)
 
