@@ -132,7 +132,7 @@ Time:O(log n)
 
 Space;O(1)
 
-# Approach-II
+# Approach-III
 Asked to solve the problem in O(log n) complexity
 But here it is O(n) complexitiy
 
