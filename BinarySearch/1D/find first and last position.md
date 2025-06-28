@@ -5,6 +5,69 @@
 
 # Approach-I
 
+```
+class Solution {
+    public static int lower(int []arr,int target){
+        int low=0;
+        int n=arr.length;
+        int high=n-1;
+        int ans=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==target){
+                ans=mid;
+                high=mid-1;
+            }
+            else if(arr[mid]<target){
+              low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+       return ans;
+    }
+     public static int upper(int []arr,int target){
+        int low=0;
+        int n=arr.length;
+        int high=n-1;
+        int ans=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==target){
+                ans=mid;
+                low=mid+1;
+            }
+            else if(arr[mid]<target){
+               low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+     return ans;
+    }
+    public int[] searchRange(int[] arr, int target) {
+       int n[]=new int[2];
+       if(arr.length==1 && arr[0]==target){
+        n[0]=0;
+        n[1]=0;
+        return n;
+       }
+       n[0]=lower(arr,target);
+       n[1]=upper(arr,target);
+       return n;
+    }
+}
+```
+# Complexities
+
+Time:O(log N)
+
+Space:O(1)
+
+# Approach-II
+
 Using binary search
 
 ```
