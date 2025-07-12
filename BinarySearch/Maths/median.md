@@ -50,3 +50,78 @@ class Solution {
 Time:O(n1+n2)
 
 Space:O(n1+n2)
+
+# Approach-II
+
+1)calculate index and then increase count with that if you find the count equal to the index then just store it and then calculate the median so,there is no need of extra array
+
+```
+class Solution {
+    public double findMedianSortedArrays(int[] a, int[] b) {
+        int n1=a.length;
+        int n2=b.length;
+        int n=n1+n2;
+        int ind1=n/2;
+        int ind2=ind1-1;
+        int i=0;
+        int j=0;
+        int mid1=-1;
+        int mid2=-1;
+        int count=0;
+        while(i<n1 && j<n2){
+            if(a[i]<=b[j]){
+                if(count==ind1){
+                    mid1=a[i];
+                }
+                if(count==ind2){
+                    mid2=a[i];
+                }
+                i++;
+                count++;
+            }
+            else{
+                if(count==ind1){
+                    mid1=b[j];
+                }
+                if(count==ind2){
+                    mid2=b[j];
+                }
+                j++;
+                count++;
+            }
+        }
+        while(i<n1){
+                  if(count==ind1){
+                    mid1=a[i];
+                }
+                if(count==ind2){
+                    mid2=a[i];
+                }
+                i++;
+                count++;
+        }
+        while(j<n2){
+                 if(count==ind1){
+                    mid1=b[j];
+                }
+                if(count==ind2){
+                    mid2=b[j];
+                }
+                j++;
+                count++;
+        }
+
+    if(n%2==0){
+        return (mid1+mid2)/2.0;
+    }
+    else{
+        return mid1;
+    }
+    }
+}
+```
+# Complexities
+
+Time:O(n1+n2) or O(n)
+
+Space:O(1)//no extra space is used
