@@ -68,3 +68,56 @@ class Solution {
 Time:O(n*m)
 
 Space:O(1)
+
+# Approach-III(Optimal)
+
+1)find lower bound ,so the lower bound becomes where 0 ends so form there we will be having only ones so that becomes the count
+
+2)consider maxcount and that particula row
+
+```
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class Main {
+    public static int find(int arr[]){
+        int low=0;
+        int ans=-1;
+        int n=arr.length;
+        int high=n-1;
+        int m=9999;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>=1){
+                m=arr[mid];
+                ans=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+    public static void main(String[] args) {
+  int arr[][]={{0,1,1},{1,1,1}};
+  int m=arr[0].length;
+  int maxones=-1;
+  int indx=-1;
+  for(int i=0;i<arr.length;i++){
+      int r=arr[0].length-1-find(arr[i]);
+   if(maxones<r){
+       maxones=r;
+       indx=i;
+   }
+  }
+  System.out.println(indx);
+    }
+}
+```
+
+# Complexities
+
+Time:O(m*logn)
+
+Space:O(1)
