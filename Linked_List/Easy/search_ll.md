@@ -1,16 +1,30 @@
 # Search in a Linked list
 
 ```
+/* Defination of ListNoode
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int value) {
+        this.val = value;
+        this.next = null;
+    }
+}
+*/
+
+
 class Solution {
-    public int getLength(ListNode head) {
+    public boolean searchKey(ListNode head, int key) {
         // Your code goes here
         ListNode temp=head;
-        int count=0;
         while(temp!=null){
-            count++;
+            if(temp.val==key){
+                return true;
+            }
             temp=temp.next;
         }
-        return count;
+        return false;
     }
 }
 ```
