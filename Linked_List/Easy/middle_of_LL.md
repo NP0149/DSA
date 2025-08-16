@@ -47,3 +47,41 @@ class Solution {
 Time:O(n)
 
 Space:O(1)
+
+
+# Approach-II
+
+1)we need to traverse to the end by first node by moving two nodes and slow by moving one node as you reach end by first node the
+slow node definitely lie at median of the linked list
+
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        head=slow;
+        return head;
+    }
+}
+```
+
+# Complexity Analysis
+
+time:O(n)
+
+Space:O(1)
