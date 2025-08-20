@@ -1,4 +1,4 @@
-# Deleteing key in doubly Linked list
+# Deleting key in doubly Linked list
 
 # Approach-I
 
