@@ -98,3 +98,38 @@ Time:O(n)
 
 Space:O(n)
 
+## Optimal approach
+
+```
+    
+    static int frog_jump_opt(int dp[],int n,int arr[]){
+        int prev1=0;
+        int prev2=0;
+        for(int i=1;i<=n;i++){
+            int one=prev1+Math.abs(arr[i]-arr[i-1]);
+            int two=Integer.MAX_VALUE;
+            if(i>1){
+                two=prev2+Math.abs(arr[i]-arr[i-2]);
+            }
+            int curr=Math.min(one,two);
+           prev2=prev1;
+           prev1=curr;
+        }
+        return prev1;
+    }
+    public static void main(String[] args) {
+        int arr[]={2,5,1,7};
+        int n=arr.length;
+        int []dp=new int[n];
+        for(int i=0;i<dp.length;i++){
+            dp[i]=-1;
+        }
+        System.out.println(frog_jump_opt(dp,n-1,arr));
+    }
+}
+```
+## Complexity Analysis
+
+Time:O(n)
+
+Space:O(1)
