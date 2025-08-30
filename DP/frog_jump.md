@@ -1,5 +1,7 @@
 # Frog jump
 
+## using usual method recurrsion to try out all possible ways
+
 ```
 import java.util.*;
 public class frog_jump {
@@ -31,4 +33,68 @@ public class frog_jump {
     }
 }
 ```
+
+## Complexity Analaysis
+
+time:O(n)
+
+Space:O(n)
+
+## Using tabulation
+
+```
+  static int frog_jump_tab(int dp[],int n,int arr[]){
+        dp[0]=0;
+        int one=0;
+        int two=0;
+        for(int i=1;i<n;i++){
+            one=dp[i-1]+Math.abs(arr[i]-arr[i-1]);
+            two=Integer.MAX_VALUE;
+            if(i>1){
+                two=dp[i-2]+Math.abs(arr[i]-arr[i-2]);
+            }
+            dp[i]=Math.min(one,two);
+        }
+        return dp[n-1];
+    }
+```
+## Complexity Analyisis
+
+Time:O(n)
+
+Space:O(n)
+
+## Using Memoisation
+
+```
+ static int frog_jump_mem(int dp[],int n,int arr[]){
+        if(n==0){
+            return 0;
+        }
+        if(dp[n]!=-1){
+            return dp[n];
+        }
+        int fs=frog_jump_mem(dp,n-1,arr)+Math.abs(arr[n]-arr[n-1]);
+        int ss=Integer.MAX_VALUE;
+        if(n>1)
+        ss=frog_jump_mem(dp,n-2,arr)+Math.abs(arr[n]-arr[n-2]);
+        dp[n]=Math.min(fs,ss);
+        return dp[n];
+    }
+public static void main(String[] args) {
+        int arr[]={2,5,1,7};
+        int n=arr.length;
+        int []dp=new int[n];
+        for(int i=0;i<dp.length;i++){
+            dp[i]=-1;
+        }
+        System.out.println(frog_jump_mem(dp,n-1,arr));
+    }
+```
+
+## Complexity Analysis
+
+Time:O(n)
+
+Space:O(n)
 
