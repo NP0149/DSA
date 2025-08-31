@@ -62,3 +62,38 @@ Time:O(n)
 
 Space:O(n)
 
+## Approach-II(Optimal approach)
+
+just call the function for 0 to n-2 excluding n-1 and then 1 to n-1
+
+
+```
+class Solution {
+    static int find(int start,int end,int arr[]){
+        int prev1=arr[start];
+        int prev2=0;
+        int pick=0,notpick=0;
+        for(int i=start;i<end;i++){
+            pick=arr[i]+prev2;
+           notpick=prev1;
+           int curr=Math.max(pick,notpick);
+           prev2=prev1;
+           prev1=curr;
+        }
+        return prev1;
+
+    }
+    public int rob(int[] arr) {
+        int n=arr.length;
+        int m1=find(0,n-1,arr);
+        int m2=find(1,n,arr);
+        return Math.max(m1,m2);
+    }
+}
+```
+
+## Complexity Analysis
+
+Time:O(n)
+
+Space:O(1)
