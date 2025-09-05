@@ -77,3 +77,50 @@ Space:O(m*n)
 
 # Tabulation
 
+```
+class Solution {
+    static int find(int [][] mat,int [][]dp,int m,int n){
+      dp[0][0]=mat[0][0]==1 ? 0:1;
+      for(int i=1;i<n;i++){
+        if(mat[0][i]==1){
+             dp[0][i]=0;
+        }
+        else{
+            dp[0][i]=dp[0][i-1];
+        }
+      }
+      for(int j=1;j<m;j++){
+        if(mat[j][0]==1){
+        dp[j][0]=0;
+        }
+        else{
+            dp[j][0]=dp[j-1][0];
+        }
+      }
+     for(int i=1;i<m;i++){
+        for(int j=1;j<n;j++){
+            if(mat[i][j]!=1)
+            dp[i][j]=dp[i-1][j]+dp[i][j-1];
+            else{
+                dp[i][j]=0;
+            }
+        }
+     }
+     return dp[m-1][n-1];
+    }
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int m=obstacleGrid.length;
+        int n=obstacleGrid[0].length;
+        int [][]dp=new int[m][n];
+        return find(obstacleGrid,dp,m,n);
+    }
+}
+```
+
+# Complexities
+
+Time:O(m*n)
+
+Space:O(m*n)
+
+
