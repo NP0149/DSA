@@ -73,3 +73,44 @@ class Solution {
 Time:O(n^2)
 
 Space:O(n^2)
+
+
+# Tabulation
+
+```
+class Solution {
+    static int find(int [][]mat,int m,int n,int [][]dp){
+        for(int j=0;j<n;j++){
+            dp[0][j]=mat[0][j];
+        }
+        for(int i=1;i<m;i++){
+            for(int j=0;j<n;j++){
+      int up=dp[i-1][j];
+      int leftdiag=(j>0)?dp[i-1][j-1]:Integer.MAX_VALUE;
+      int rightdiag=(j<m-1)?dp[i-1][j+1]:Integer.MAX_VALUE;
+      dp[i][j]=Math.min(up,Math.min(leftdiag,rightdiag))+mat[i][j];
+        }
+        }
+             int ans = Integer.MAX_VALUE;
+        for (int j = 0; j < n; j++) {
+            ans = Math.min(ans, dp[m-1][j]);
+        }
+        return ans;
+
+    }
+    public int minFallingPathSum(int[][] matrix) {
+         int m=matrix.length;
+         int n=matrix[0].length;
+         int ans=Integer.MAX_VALUE;
+         int dp[][]=new int[m][n];
+         return find(matrix,m,n,dp);
+    }
+}
+```
+# Complexity Analysis
+
+Time:O(m*n)
+
+Space:O(m*n)
+
+# 
