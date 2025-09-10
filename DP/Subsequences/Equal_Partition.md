@@ -1,4 +1,4 @@
-# Equal Partition
+# Equal Partition 
 
 [Problem Link](https://leetcode.com/problems/partition-equal-subset-sum/)
 
