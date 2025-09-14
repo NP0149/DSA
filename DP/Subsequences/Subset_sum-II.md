@@ -36,7 +36,7 @@ Time:O(2^n)
 Space:O(n)//recurrsion stack space
 
 
-# Memoziation
+# Memoization
 
 ```
 import java.util.*;
@@ -72,3 +72,40 @@ public class subset_sum {
 Time:O(n*target)
 
 Space:O(n*target) //for the array +O(n)//recurrsive stack space
+
+# Tabulation
+```
+import java.util.*;
+public class subset_sum {
+    static boolean find(int arr[],int target){
+        boolean dp[][]=new boolean[arr.length][target+1];
+        for(int i=0;i<arr.length;i++){
+            dp[i][0]=true;
+        }
+        if(arr[0]<=target){
+            dp[0][arr[0]]=true;
+        }
+        for(int i=1;i<arr.length;i++){
+            for(int j=1;j<=target;j++){
+                boolean notpick=dp[i-1][j];
+                boolean pick=false;
+                if(arr[i]<=j){
+                    pick=dp[i-1][j-arr[i]];
+                }
+                 dp[i][j]=pick|| notpick;
+            }
+        }
+        return dp[arr.length-1][target];
+    }
+    public static void main(String[] args) {
+        int arr[]={1,3,4};
+        int target=6;
+        System.out.println(find(arr,target));
+    }
+}
+```
+# Complexity Analysis
+
+Time:O(n*target)
+
+Space:O(n*target)
