@@ -34,3 +34,41 @@ public class subset_sum {
 Time:O(2^n)
 
 Space:O(n)//recurrsion stack space
+
+
+# Memoziation
+
+```
+import java.util.*;
+public class subset_sum {
+    static boolean find(int arr[],int indx,int target,Boolean dp[][]){
+        if(target==0){
+            return true;
+        }
+        if(indx==0) {
+            return arr[0] == target;
+        }
+        if(dp[indx][target]!=null){
+            return dp[indx][target];
+        }
+
+    boolean notpick=find(arr,indx-1,target,dp);
+        boolean pick=false;
+        if(arr[indx]<=target){
+            pick=find(arr,indx-1,target-arr[indx],dp);
+        }
+        return pick || notpick;
+    }
+    public static void main(String[] args) {
+        int arr[]={1,2,3,4};
+        int target=6;
+        Boolean dp[][]=new Boolean[arr.length][target+1];
+        System.out.println(find(arr,arr.length-1,target,dp));
+    }
+}
+```
+# Complexity Analysis
+
+Time:O(n*target)
+
+Space:O(n*target) //for the array +O(n)//recurrsive stack space
