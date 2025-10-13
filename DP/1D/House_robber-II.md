@@ -97,3 +97,61 @@ class Solution {
 Time:O(n)
 
 Space:O(1)
+
+```
+import java.util.*;
+public class house_robber_2 {
+    static int find(int arr[],int start,int indx){
+        if(indx==start){
+            return arr[start];
+        }
+     if(indx<start){
+         return 0;
+     }
+     int pick=find(arr,start,indx-2)+arr[indx];
+     int notpick=find(arr,start,indx-1);
+     return Math.max(pick,notpick);
+    }
+    static int find_mem(int arr[],int start,int indx,int []dp){
+        if(indx==start){
+            return arr[start];
+        }
+        if(indx<start){
+            return 0;
+        }
+        if(dp[indx]!=-1){
+            return dp[indx];
+        }
+        int pick=find_mem(arr,start,indx-2,dp)+arr[indx];
+        int notpick=find_mem(arr,start,indx-1,dp);
+        dp[indx]=Math.max(pick,notpick);
+        return dp[indx];
+    }
+    static int find_tab(int arr[],int start,int indx,int end,int dp[]){
+        int n=end-start+1;
+       dp[0]=arr[start];
+       dp[1]=Math.max(arr[start],arr[start+1]);
+       for(int i=2;i<n;i++){
+           dp[i]=Math.max(dp[i-1],dp[i-2]+arr[start+i]);
+       }
+       return dp[n-1];
+    }
+
+    public static void main(String[] args) {
+        int arr[]={2,3,7};
+       // System.out.println(Math.max(find(arr,0,arr.length-2),find(arr,1,arr.length-1)));
+        System.out.println("using normal recurrsion");
+        System.out.println(find(arr,0,arr.length-2));
+        System.out.println(find(arr,1,arr.length-1));
+        System.out.println("using memoisation");
+        int dp[]=new int[arr.length];
+        Arrays.fill(dp,-1);
+        System.out.println(find_mem(arr,0,arr.length-2,dp));
+        System.out.println(find_mem(arr,1,arr.length-1,dp));
+        System.out.println("using tabulation");
+        int d[]=new int[arr.length];
+        System.out.println(find_tab(arr,0,arr.length-2,arr.length-2,d));
+        System.out.println(find_tab(arr,1,arr.length-1,arr.length-1,d));
+    }
+}
+```
