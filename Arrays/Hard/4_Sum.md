@@ -34,36 +34,53 @@ Space:O(k)//k unique number of triplets
 # Approach-II(optimal)
 
 ```
-public class Sum_4 {
+class Solution {
+    public List<List<Integer>> fourSum(int[] arr, int target) {
+        Arrays.sort(arr);
+        int n=arr.length;
 
-  public static List<List<Integer>> find(int arr[],int target) {
-      int n = arr.length;
-      Set<List<Integer>> hash = new HashSet<>();
-      for (int i = 0; i < n; i++) {
-          if (i > 0 && arr[i] == arr[i - 1]) {
-              continue;
-          }
-          for (int j = i + 1; j < n; j++) {
-              if (j > i + 1 && arr[j] == arr[j - 1]) {
-                  continue;
-              }
-              Set<Integer> st = new HashSet<>();
-              for (int k = j + 1; k < n; k++) {
-                  long sum = (long) arr[i] + arr[j] + arr[k];
-                  long temp = (long)target-sum;
-                  if (st.contains((int)temp)) {
-                      List<Integer> t = Arrays.asList(arr[i], arr[j], arr[k], (int)temp);
-                      Collections.sort(t);
-                      hash.add(t);
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        for(int i=0;i<n;i++){
+            hm.put(arr[i],hm.getOrDefault(arr[i],0)+1);
+        }
+        List<List<Integer>> li=new ArrayList<>();
+        HashSet<List<Integer>> hs=new HashSet<>();
+        for(int i=0;i<arr.length;i++){
+            if(i>0 && arr[i]==arr[i-1]) continue;
+            for(int j=i+1;j<n;j++){
+                if(j>i+1 && arr[j]==arr[j-1]) continue;
+                for(int k=j+1;k<n;k++){
+                    if(k>j+1 && arr[k]==arr[k-1]) continue;
+                 long sum = (long)arr[i] + (long)arr[j] + (long)arr[k];
+                    long need = (long)target - sum;
+
+                    // need must fit in int and exist in map
+                    if (need < Integer.MIN_VALUE || need > Integer.MAX_VALUE) continue;
+                    int val = (int)need;
+
+                    int count=0;
+                  if(hm.containsKey(val)){
+                  if(arr[i]==val) count++;
+                  if(arr[j]==val) count++;
+                  if(arr[k]==val) count++;
+                  if(hm.get(val)>count){
+                    List<Integer> l=new ArrayList<>();
+                    l.add(arr[i]);
+                    l.add(arr[j]);
+                    l.add(arr[k]);
+                    l.add(val);
+                    Collections.sort(l);
+                    hs.add(l);
                   }
-                  st.add(arr[k]);
-              }
-
-          }
-      }
-          return new ArrayList<>(hash);
-
-  }
+                  }
+                }
+            }
+        }
+        li.addAll(hs);
+        return li;
+    }
+}
+    
 ```
 
 # Complexities
