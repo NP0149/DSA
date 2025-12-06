@@ -15,7 +15,7 @@ class Solution {
     public int findPeakElement(int[] arr) {
         int n=arr.length;
         int low=1;
-        int high=n-1;
+        int high=n-2;
         if(n==1){
             return 0;
         }
