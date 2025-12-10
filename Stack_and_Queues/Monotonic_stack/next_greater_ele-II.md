@@ -31,6 +31,6 @@ class Solution {
 
 # Complexity Analysis
 
-Time:O(n)
+Time:O(4n)
 
-Space:O(n)
+Space:O(2n)
