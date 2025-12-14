@@ -39,3 +39,37 @@ class Solution {
 Time:O(n X k)
 
 Space:O(n)
+
+# Optimal Approach
+
+```
+class Solution {
+    public int[] maxSlidingWindow(int[] arr, int k) {
+        List<Integer> li=new ArrayList<>();
+        Deque<Integer> dq=new ArrayDeque<>();
+        for(int i=0;i<arr.length;i++){
+            if(!dq.isEmpty() && dq.peekFirst()<=i-k){
+                dq.removeFirst();
+            }
+            while(!dq.isEmpty() && arr[dq.peekLast()]<arr[i]){
+                dq.removeLast();
+            }
+            dq.addLast(i);
+            if(i>=k-1){
+                li.add(arr[dq.peekFirst()]);
+            }
+        }
+        int ans[]=new int[li.size()];
+        for(int i=0;i<li.size();i++){
+            ans[i]=li.get(i);
+        }
+        return ans;
+    }
+}
+```
+
+# Complexity Analysis
+
+Time:O(n)
+
+Space:O(n)
