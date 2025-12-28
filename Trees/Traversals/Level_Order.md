@@ -22,10 +22,10 @@ class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> q=new LinkedList<>();
         List<List<Integer>> li=new ArrayList<>();
-        q.offer(root);
         if(root==null){
             return li;
         }
+     q.offer(root);
         while(!q.isEmpty()){
             int len=q.size();
             List<Integer> small=new ArrayList<>();
