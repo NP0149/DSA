@@ -1,6 +1,6 @@
 # check children
 
-[Problem Link](https://takeuforward.org/plus/dsa/problems/children-sum-property-in-binary-tree)
+[Problem Link](https://www.geeksforgeeks.org/problems/children-sum-parent/1)
 
 ```
 class Solution {
