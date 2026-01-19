@@ -31,8 +31,52 @@
    Time:O(N^2)
 
    Space:O(N)
+   
+# Approach-II
 
-   # Approach -II
+# They mentioned not to use division method ,but by using division method also we can solve the problem
+
+```
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int without=1;
+        int pro=1;
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            pro*=nums[i];
+            hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
+            if(nums[i]!=0){
+                without*=nums[i];
+            }
+        }
+        int ans[]=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=0){
+                ans[i]=pro/nums[i];
+            }
+            else if(nums[i]==0){
+                if(hm.get(0)>1){
+                    ans[i]=0;
+                }
+                else{
+                    ans[i]=without;
+                }
+            }
+            else{
+
+            }
+        }
+        return ans;
+    }
+}
+```
+# Complexity Analysis
+
+Time:O(n)
+
+Space:O(1)
+
+   # Approach -III
 
    1)find prefix product
 
