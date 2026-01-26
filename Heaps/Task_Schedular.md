@@ -2,6 +2,8 @@
 
 [Problem Link](https://leetcode.com/problems/task-scheduler/description/)
 
+# Brute
+
 ```
 class Solution {
       static boolean check(HashMap<Character,Integer> hm){
