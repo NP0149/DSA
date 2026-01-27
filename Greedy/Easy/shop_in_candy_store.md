@@ -47,3 +47,43 @@ class Solution {
 Time:O(n)
 
 Space:O(n)
+
+
+# Optimised
+
+```
+class Solution {
+    public ArrayList<Integer> minMaxCandy(int[] arr, int k) {
+        // code her
+        Arrays.sort(arr);
+        int i=0;
+        int n=arr.length;
+        int j=n-1;
+        int minsum=0;
+        while(i<=j){
+            minsum+=arr[i];
+            i++;
+            j=j-k;
+        }
+        int t=n-1;
+        int m=0;
+        int maxsum=0;
+        while(m<=t){
+            maxsum+=arr[t];
+            t--;
+            m=m+k;
+        }
+        ArrayList<Integer> li=new ArrayList<>();
+        li.add(minsum);
+        li.add(maxsum);
+        return li;
+    }
+}
+```
+
+# Complexity Analysis
+
+Time:O(n)
+
+Space:O(1)
+
