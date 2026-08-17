@@ -90,4 +90,27 @@ class Solution {
 }
 ```
 
+# Optimal approach
 
+```
+ static boolean find_opt(int[]arr,int target){
+    boolean prev[]=new boolean[target+1];
+    prev[0]=true;
+    if(arr[0]<=target){
+        prev[arr[0]]=true;
+    }
+    for(int i=1;i<arr.length;i++){
+        boolean curr[]=new boolean[target+1];
+        for(int j=1;j<=target;j++){
+            boolean nottake=prev[j];
+            boolean take=false;
+            if(arr[i]<=j){
+                take=prev[j-arr[i]];
+            }
+            curr[j]=take || nottake;
+        }
+        prev=curr;
+    }
+    return prev[target];
+  }
+```
