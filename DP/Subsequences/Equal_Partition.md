@@ -44,3 +44,110 @@ class Solution {
 Time:O(2^n)
 
 Space:O(n)
+
+
+
+# Memoisation ,tabulation and optimal approach
+
+
+```
+class Solution {
+    static boolean find(int arr[],int indx,int target){
+        if(target==0){
+            return true;
+        }
+        if(indx<0){
+            return false;
+        }
+        if(indx==0){
+            return arr[0]==target;
+        }
+        boolean nottake=find(arr,indx-1,target);
+        boolean take=false;
+        if(arr[indx]<=target){
+            take=find(arr,indx-1,target-arr[indx]);
+        }
+        return (take || nottake);
+    }
+    static boolean find_mem(int arr[],int indx,int target,int dp[][]){
+        if(target==0){
+            return true;
+        }
+        if(indx<0){
+            return false;
+        }
+        if(indx==0){
+            return arr[0]==target;
+        }
+      if(dp[indx][target]!=-1){
+        return dp[indx][target]==1;
+      }
+      boolean nottake=find_mem(arr,indx-1,target,dp);
+      boolean take=false;
+      if(arr[indx]<=target){
+        take=find_mem(arr,indx-1,target-arr[indx],dp);
+      }
+      dp[indx][target]=(take || nottake)?1:0;
+      return dp[indx][target]==1;
+    }
+    static boolean find_tab(int arr[],int target){
+        boolean dp[][]=new boolean[arr.length][target+1];
+       for(int i=0;i<arr.length;i++){
+        dp[i][0]=true;
+       }
+       if(arr[0]<=target){
+        dp[0][arr[0]]=true;
+       }
+       for(int i=1;i<arr.length;i++){
+        for(int j=1;j<=target;j++){
+            boolean nottake=dp[i-1][j];
+            boolean take=false;
+            if(arr[i]<=j){
+           take=dp[i-1][j-arr[i]];
+            }
+            dp[i][j]=(take || nottake);
+        }
+       }
+       return dp[arr.length-1][target];
+    }
+    static boolean find_opt(int arr[],int target){
+        boolean prev[]=new boolean[target+1];
+        prev[0]=true;
+        if(arr[0]<=target){
+            prev[arr[0]]=true;
+        }
+         for(int i=1;i<arr.length;i++){
+            boolean curr[]=new boolean[target+1];
+            for(int j=1;j<=target;j++){
+                boolean nottake=prev[j];
+                boolean take=false;
+                if(arr[i]<=j){
+                   take= prev[j-arr[i]];
+                }
+                curr[j]=(take || nottake);
+            }
+            prev=curr;
+         }
+     return prev[target];
+    }
+    public boolean canPartition(int[] arr) {
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+        }
+         if(sum%2==1){
+            return false;
+        }
+        int target=sum/2;
+    //  int dp[][]=new int[arr.length][target+1];
+    //     for(int a[]:dp){
+    //         Arrays.fill(a,-1);
+    //     }
+    //     return find_mem(arr,arr.length-1,target,dp);
+//    return find_tab(arr,target);
+ return find_opt(arr,target);
+    }
+}
+```
+
+
