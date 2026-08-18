@@ -1,3 +1,47 @@
+
+# Target sum
+# recurrsion
+
+```
+class Solution {
+   static int find_rec(int arr[],int indx,int target){
+    if(indx==0){
+       if(target==arr[0]){
+        return 1;
+       }
+       else{
+        return 0;
+       }
+    }
+    if(target==0){
+        return 1;
+    }
+    int nottake=find_rec(arr,indx-1,target);
+    int take=0;
+    if(arr[indx]<=target){
+        take=find_rec(arr,indx-1,target-arr[indx]);
+    }
+    return take+nottake;
+   }
+    public int findTargetSumWays(int[] arr, int target) {
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+        }
+        if(Math.abs(target)>sum){
+            return 0;
+        }
+        if((sum+target)%2!=0){
+            return 0;
+        }
+           int need=(sum+target)/2;
+        return find_rec(arr,arr.length-1,need);
+    }
+}
+```
+
+
+
 # Tabulation
 
 ```
