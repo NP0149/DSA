@@ -70,4 +70,30 @@ class Solution {
 # Tabulation
 ```
 
+  public int change(int target, int[] arr) {
+       int dp[][]=new int[arr.length][target+1];
+      for(int i = 0; i < arr.length; i++) {
+        dp[i][0] = 1;
+    }
+
+    // Using only arr[0]
+    for(int j = 0; j <= target; j++) {
+        if(j % arr[0] == 0) {
+            dp[0][j] = 1;
+        }
+    }
+       for(int i=1;i<arr.length;i++){
+        for(int j=1;j<=target;j++){
+            int nottake=dp[i-1][j];
+            int take=0;
+            if(arr[i]<=j){
+            take=dp[i][j-arr[i]];
+            }
+            dp[i][j]=take+nottake;
+        }
+       }
+       return dp[arr.length-1][target];
+    }
+}
+
 ```
