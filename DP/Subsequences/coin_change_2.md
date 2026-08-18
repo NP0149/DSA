@@ -97,3 +97,31 @@ class Solution {
 }
 
 ```
+
+# Optimal
+
+```
+ public int change(int target, int[] arr) {
+       int prev[]=new int[target+1];
+     for(int j = 0; j <= target; j++) {
+    if(j % arr[0] == 0) {
+        prev[j] = 1;
+    }
+}
+       for(int i=1;i<arr.length;i++){
+        int curr[]=new int[target+1];
+        curr[0]=1;
+        for(int j=1;j<=target;j++){
+            int nottake=prev[j];
+            int take=0;
+            if(arr[i]<=j){
+            take=curr[j-arr[i]];
+            }
+            curr[j]=take+nottake;
+        }
+        prev=curr;
+       }
+       return prev[target];
+    }
+}
+```
