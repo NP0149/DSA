@@ -130,3 +130,42 @@ class Solution {
     }
 }
 ```
+
+# Optimal approach
+
+```
+class Solution {
+    public int findTargetSumWays(int[] arr, int target) {
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+        }
+        if(Math.abs(target)>sum){
+           return 0;
+        }
+        if((sum+target)%2!=0){
+            return 0;
+        }
+        int need=(sum+target)/2;
+       int prev[]=new int[need+1];
+      prev[0]=1;
+        if(arr[0]<=need){
+           prev[arr[0]]+=1;
+        }
+        for(int i=1;i<arr.length;i++){
+            int curr[]=new int[need+1];
+            for(int j=0;j<=need;j++){
+                int nottake=prev[j];
+                int take=0;
+                if(arr[i]<=j){
+                    take=prev[j-arr[i]];
+                }
+                curr[j]=take+nottake;
+            }
+            prev=curr;
+        }
+        return prev[need];
+    }
+
+}
+```
