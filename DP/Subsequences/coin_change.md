@@ -98,3 +98,36 @@ class Solution {
     }
 }
 ```
+# Optimised
+
+```
+class Solution {
+    public int coinChange(int[] arr, int target) {
+      int prev[]=new int[target+1];
+        for(int i=0;i<=target;i++){
+          if(i%arr[0]==0){
+         prev[i]=i/arr[0];
+          }
+          else{
+        prev[i]=(int)1e9;
+          }
+        }
+        for(int i=1;i<arr.length;i++){
+            int curr[]=new int[target+1];
+            for(int j=0;j<=target;j++){
+                int nottake=prev[j];
+                int take=Integer.MAX_VALUE;
+                if(arr[i]<=j){
+                    take=1+curr[j-arr[i]];
+                }
+                curr[j]=Math.min(nottake,take);
+            }
+            prev=curr;
+        }
+        if(prev[target]>=(int)1e9){
+            return -1;
+        }
+        return prev[target];
+    }
+}
+```
