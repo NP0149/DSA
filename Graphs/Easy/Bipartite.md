@@ -4,17 +4,16 @@
 ## Using DFS
 ```
 class Solution {
-
-    static boolean is_bipartite(int arr[][],int visited[],int indx,int color){
-        visited[indx]=color;
+    static boolean dfs(int arr[][],int color[],int indx,int coloring){
+        color[indx]=coloring;
         for(int num:arr[indx]){
-            if(visited[num]!=0){
-                if(visited[num]==color){
-                    return false;
+            if(color[num]==0){
+                if(dfs(arr,color,num,3-coloring)==false){
+                  return false;
                 }
             }
             else{
-                if(is_bipartite(arr,visited,num,3-color)==false){
+                if(color[num]==color[indx]){
                     return false;
                 }
             }
@@ -22,15 +21,15 @@ class Solution {
         return true;
     }
     public boolean isBipartite(int[][] arr) {
-        int visited[]=new int[arr.length];
-        for(int i=0;i<visited.length;i++){
-            if(visited[i]==0){
-               if(is_bipartite(arr,visited,i,1)==false){
-                return false;
-               }
+        int color[]=new int[arr.length];
+        for(int i=0;i<arr.length;i++){
+            if(color[i]==0){
+                if(!dfs(arr,color,i,1)){
+                    return false;
+                }
             }
         }
-    return true;
+        return true;
     }
 }
 ```
