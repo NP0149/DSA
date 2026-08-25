@@ -8,6 +8,7 @@ class Solution {
      for(int i=0;i<arr.length;i++){
       li.add(new ArrayList<>());
      }
+// reverse the nodes parent should become child and viceversa
         for(int i=0;i<arr.length;i++){
           for(int num:arr[i]){
             li.get(num).add(i);
