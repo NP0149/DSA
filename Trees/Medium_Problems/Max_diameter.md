@@ -35,7 +35,31 @@ class Solution {
     }
 }
 ```
+```
+class Solution {
+    static int find_height(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int lh=find_height(root.left);
+        int rh=find_height(root.right);
+        return 1+Math.max(lh,rh);
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int lh=find_height(root.left);
+        int rh=find_height(root.right);
+        max_length=Math.max(max_length,lh+rh);
 
+        int left=diameterOfBinaryTree(root.left);
+        int right=diameterOfBinaryTree(root.right);
+
+        return max_length;
+    }
+}
+```
 # Complexity Analysis
 
 Time:O(n)
