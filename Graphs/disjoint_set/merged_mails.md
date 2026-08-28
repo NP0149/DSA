@@ -37,41 +37,42 @@ class dsu{
 }
 class Solution {
     public List<List<String>> accountsMerge(List<List<String>> li) {
-        int n=li.size();
-        dsu d=new dsu(n);
-        HashMap<String,Integer> hm=new HashMap<>();
-        for(int i=0;i<n;i++){
-            for(int j=1;j<li.get(i).size();j++){
-              String mail=li.get(i).get(j);
-              if(!hm.containsKey(mail)){
-                hm.put(mail,i);
-              }
-              else{
-                d.union(i,hm.get(mail));
-              }
-            }
+       List<List<String>> ans=new ArrayList<>();
+       HashMap<String,Integer> hm=new HashMap<>();
+       dsu d=new dsu(li.size());
+       for(int i=0;i<li.size();i++){
+        for(int j=1;j<li.get(i).size();j++){
+            String mail=li.get(i).get(j);
+          if(!hm.containsKey(mail)){
+            hm.put(mail,i);
+          }
+          else{
+            d.union(i,hm.get(mail));
+          }
         }
+       }
        List<List<String>> merged=new ArrayList<>();
        for(int i=0;i<li.size();i++){
-         merged.add(new ArrayList<String>());
+        merged.add(new ArrayList<String>());
        }
-       for(HashMap.Entry<String,Integer> it:hm.entrySet()){
-        String mail=it.getKey();
-        int node=d.find(it.getValue());
-        merged.get(node).add(mail);
-       }
-       List<List<String>> ans=new ArrayList<>();
-       for(int i=0;i<n;i++){
-        if(merged.get(i).size()==0) continue;
+      for(String mail:hm.keySet()){
+        int i=hm.get(mail);
+        int up=d.find(i);
+        merged.get(up).add(mail);
+      }
+      for(int i=0;i<li.size();i++){
+        if(merged.get(i).size()==0){
+            continue;
+        }
+        List<String> temp=new ArrayList<>();
+        temp.add(li.get(i).get(0));
         Collections.sort(merged.get(i));
-          List<String> temp=new ArrayList<>();
-          temp.add(li.get(i).get(0));
-          for(String mail:merged.get(i)){
-            temp.add(mail);
-          }
-          ans.add(temp);
-       }
-       return ans;
+        for(String mail:merged.get(i)){
+           temp.add(mail);
+        }
+        ans.add(temp);
+      }
+      return ans;
     }
 }
 ```
