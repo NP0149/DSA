@@ -37,7 +37,36 @@ Time:O(2^n) //2 times calling the same function in function
 
 Space:O(n) //recurrsive stack
 
-
+# Tabulation
+```
+class Solution {
+    static boolean isSubsetSum(int arr[], int sum) {
+       boolean dp[][]=new boolean[arr.length][sum+1];
+       for(int i=0;i<arr.length;i++){
+           dp[i][0]=true;
+       }
+       if(arr[0]<=sum){
+           dp[0][arr[0]]=true;
+       }
+       for(int i=1;i<arr.length;i++){
+           for(int j=1;j<=sum;j++){
+               if(arr[i]<=j){
+                   dp[i][j]=dp[i-1][j] || dp[i-1][j-arr[i]];
+               }
+               else{
+                   dp[i][j]=dp[i-1][j];
+               }
+           }
+       }
+       for(int i=0;i<arr.length;i++){
+           if(dp[i][sum]==true){
+               return true;
+           }
+       }
+       return false;
+    }
+}
+```
 # memoisation and tabulation
 
 ```
