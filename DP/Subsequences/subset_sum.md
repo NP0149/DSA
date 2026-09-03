@@ -58,12 +58,7 @@ class Solution {
                }
            }
        }
-       for(int i=0;i<arr.length;i++){
-           if(dp[i][sum]==true){
-               return true;
-           }
-       }
-       return false;
+      return dp[arr.length-1][sum];
     }
 }
 ```
