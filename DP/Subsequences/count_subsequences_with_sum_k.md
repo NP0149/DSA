@@ -35,3 +35,44 @@ class Solution {
 Time:O(2^n)
 
 Space:O(n)
+
+# Memoisation
+
+```
+class Solution {
+    
+   static int find(int arr[],int target,int indx,int dp[][]){
+        if(indx==0){
+            if(target==0 && arr[0]==0){
+                return 2;
+            }
+            if(target==0 || arr[indx]==target){
+                return 1;
+            }
+            return 0;
+        }
+        if(dp[indx][target]!=-1){
+            return dp[indx][target];
+        }
+        int nottake=find(arr,target,indx-1,dp);
+        int take=0;
+        if(arr[indx]<=target){
+            take=find(arr,target-arr[indx],indx-1,dp);
+        }
+        return dp[indx][target]=take+nottake;
+    }
+    static int perfectSum(int[] arr, int target) {
+        int dp[][]=new int[arr.length][target+1];
+        for(int i=0;i<arr.length;i++){
+        Arrays.fill(dp[i],-1);
+        }
+        return find(arr,target,arr.length-1,dp);
+    }
+}
+```
+
+
+# Tabulation
+
+```
+```
