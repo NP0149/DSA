@@ -4,6 +4,39 @@
 
 
 # Usual Recurrsion
+```
+class Solution {
+    static int min_sum;
+    void find(int arr[][],int row,int col,int sum){
+        if(row==arr.length-1){
+            min_sum=Math.min(min_sum,sum);
+            return;
+        }
+        if(row+1<arr.length ){
+            find(arr,row+1,col,sum+arr[row+1][col]);
+            if(col+1<arr[0].length){
+            find(arr,row+1,col+1,sum+arr[row+1][col+1]);
+            }
+        }
+    }
+    public int minimumTotal(List<List<Integer>> li) {
+   int n=li.get(li.size()-1).size();
+   int m=li.size();
+   int arr[][]=new int[m][n];
+   min_sum=Integer.MAX_VALUE;
+   for(int i=0;i<arr.length;i++){
+        Arrays.fill(arr[i],Integer.MAX_VALUE);
+   }
+   for(int i=0;i<arr.length;i++){
+    for(int j=0;j<=i;j++){
+        arr[i][j]=li.get(i).get(j);
+    }
+   }
+   find(arr,0,0,arr[0][0]);
+   return min_sum;
+    }
+}
+```
 
 ```
 class Solution {
