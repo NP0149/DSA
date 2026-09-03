@@ -144,7 +144,31 @@ Space:O(m^2)
 
 
 # Tabulation
-
+```
+class Solution {
+    public int minimumTotal(List<List<Integer>> li) {
+        int n=li.size();
+        int dp[][]=new int[n][n];
+        for(int i=0;i<n;i++){
+        Arrays.fill(dp[i],Integer.MAX_VALUE);
+        }
+        dp[0][0]=li.get(0).get(0);
+        for(int i=1;i<n;i++){
+            dp[i][0]=li.get(i).get(0)+dp[i-1][0];
+        }
+        for(int i=1;i<n;i++){
+            for(int j=1;j<=i;j++){
+               dp[i][j]=li.get(i).get(j)+Math.min(dp[i-1][j],dp[i-1][j-1]);
+            }
+        }
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<n;i++){
+            min=Math.min(min,dp[li.size()-1][i]);
+        }
+        return min;
+    }
+}
+```
 ```
 class Solution {
     public int minimumTotal(List<List<Integer>> tri) {
