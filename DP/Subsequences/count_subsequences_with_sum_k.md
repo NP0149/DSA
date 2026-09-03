@@ -5,25 +5,27 @@
 # recurrsion
 
 ```
-import java.util.*;
-public class count_subsets_with_k {
-  static int find(int []arr,int i,int n,int sum,int target){
-      if(sum==target){
-          return 1;
-      }
-      if(i>=n){
-          return 0;
-      }
-      int left=find(arr,i+1,n,sum+arr[i],target);
-     int right= find(arr,i+1,n,sum,target);
-     return left+right;
-  }
-
-    public static void main(String[] args) {
-        int arr[]={1,2,3,4,5};
-        int sum=0;
-        int target=5;
-        System.out.println(find(arr,0,arr.length,sum,target));
+class Solution {
+    
+   static int find(int arr[],int target,int indx){
+        if(indx==0){
+            if(target==0 && arr[0]==0){
+                return 2;
+            }
+            if(target==0 || arr[indx]==target){
+                return 1;
+            }
+            return 0;
+        }
+        int nottake=find(arr,target,indx-1);
+        int take=0;
+        if(arr[indx]<=target){
+            take=find(arr,target-arr[indx],indx-1);
+        }
+        return take+nottake;
+    }
+    static int perfectSum(int[] arr, int target) {
+        return find(arr,target,arr.length-1);
     }
 }
 ```
