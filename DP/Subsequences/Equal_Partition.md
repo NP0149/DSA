@@ -70,7 +70,49 @@ Time:O(2^n)
 
 Space:O(n)
 
+# Memoisation
 
+```
+class Solution {
+    int find(int arr[],int indx,int target,int dp[][]){
+        if(target==0){
+            return 1;
+        }
+        if(indx==0){
+            if(arr[0]==target){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        if(dp[indx][target]!=-1){
+            return dp[indx][target];
+        }
+        int nottake=find(arr,indx-1,target,dp);
+        int take=0;
+       if(arr[indx]<=target){
+        take=find(arr,indx-1,target-arr[indx],dp);
+       }
+       return dp[indx][target]=(take==1 || nottake==1)?1:0;
+    }
+    public boolean canPartition(int[] arr) {
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+        }
+        if(sum%2==1){
+            return false;
+        }
+        int target=sum/2;
+        int dp[][]=new int[arr.length][target+1];
+        for(int i=0;i<arr.length;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return  find(arr,arr.length-1,target,dp)==1;
+    }
+}
+```
 
 # Memoisation ,tabulation and optimal approach
 
