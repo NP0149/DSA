@@ -49,7 +49,37 @@ class Solution {
     }
 }
 ```
-
+```
+class Solution {
+    static int min;
+    int find(int arr[][],int row,int col,int score,int dp[][]){
+    if(row==arr.length-1 && col==arr[0].length-1){
+        min=Math.min(min,score);
+        dp[row][col]=min;
+        return 0;
+    }
+    if(dp[row][col]!=-1){
+        return dp[row][col];
+    }
+    if(row+1>=0 && row+1<arr.length){
+        find(arr,row+1,col,score+arr[row+1][col],dp);
+    }
+    if(col+1>=0 && col+1<arr[0].length){
+        find(arr,row,col+1,score+arr[row][col+1],dp);
+    }
+    return dp[row][col];
+    }
+    public int minPathSum(int[][] arr) {
+        min=Integer.MAX_VALUE;
+        int dp[][]=new int[arr.length][arr[0].length];
+        for(int i=0;i<arr.length;i++){
+        Arrays.fill(dp[i],-1);
+        }
+        find(arr,0,0,arr[0][0],dp);
+        return dp[arr.length-1][arr[0].length-1];
+    }
+}
+```
 # Complexities
 
 Time:O(m*n)
