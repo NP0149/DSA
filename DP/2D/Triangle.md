@@ -90,7 +90,52 @@ class Solution {
     }
 }
 ```
-
+```
+class Solution {
+    static int min_sum;
+    int find(int arr[][],int row,int col,int sum,int dp[][]){
+        if(row==arr.length-1){
+            min_sum=Math.min(min_sum,sum);
+            dp[row][col]=min_sum;
+            return dp[row][col];
+        }
+        if(dp[row][col]!=-1){
+            return dp[row][col];
+        }
+        if(row+1<arr.length ){
+            find(arr,row+1,col,sum+arr[row+1][col],dp);
+            if(col+1<arr[0].length){
+            find(arr,row+1,col+1,sum+arr[row+1][col+1],dp);
+            }
+        }
+        return dp[row][col];
+    }
+    public int minimumTotal(List<List<Integer>> li) {
+   int n=li.get(li.size()-1).size();
+   int m=li.size();
+   int arr[][]=new int[m][n];
+   min_sum=Integer.MAX_VALUE;
+   for(int i=0;i<arr.length;i++){
+        Arrays.fill(arr[i],Integer.MAX_VALUE);
+   }
+   for(int i=0;i<arr.length;i++){
+    for(int j=0;j<=i;j++){
+        arr[i][j]=li.get(i).get(j);
+    }
+   }
+   int dp[][]=new int[m][n];
+   for(int i=0;i<arr.length;i++){
+    Arrays.fill(dp[i],-1);
+   }
+   find(arr,0,0,arr[0][0],dp);
+   int min=Integer.MAX_VALUE;
+   for(int i=0;i<arr[0].length;i++){
+    min=Math.min(min,dp[arr.length-1][i]);
+   }
+   return min;
+    }
+}
+```
 # Complexity Analysis
 
 Time:O(m^2)
