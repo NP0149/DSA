@@ -72,7 +72,49 @@ class Solution {
     }
 }
 ```
+# Tabulation without index shifting
 
+```
+class Solution {
+    public int longestPalindromeSubseq(String s) {
+      StringBuilder sb=new StringBuilder(s).reverse();
+      String rev=sb.toString();
+      int dp[][]=new int[s.length()][rev.length()];
+      if(s.charAt(0)==rev.charAt(0)){
+        dp[0][0]=1;
+      }
+      for(int i=1;i<s.length();i++){
+        char ch=rev.charAt(0);
+       if(s.charAt(i)==ch){
+        dp[i][0]=1;
+       }
+       else{
+        dp[i][0]=dp[i-1][0];
+       }
+      }
+      for(int i=1;i<rev.length();i++){
+        char ch=s.charAt(0);
+        if(rev.charAt(i)==ch){
+            dp[0][i]=1+dp[0][i-1];
+        }
+        else{
+            dp[0][i]=dp[0][i-1];
+        }
+      }
+      for(int i=1;i<s.length();i++){
+        for(int j=1;j<rev.length();j++){
+            if(s.charAt(i)==rev.charAt(j)){
+                dp[i][j]=1+dp[i-1][j-1];
+            }
+            else{
+                dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+      }
+      return dp[s.length()-1][rev.length()-1];
+    }
+}
+```
 
 # Optimised
 
