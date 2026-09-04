@@ -3,29 +3,30 @@
 # Recurrsion
 
 ```
-class Solution {
-    static int find_rec(int arr[],int indx,int target){
+ class Solution {
+    int find(int arr[],int target,int indx){
+          if(target==0){
+            return 1;
+        }
         if(indx==0){
-           if(target%arr[0]==0){
-            return 1;
-           }
-           else{
+            if(target%arr[0]==0){
+                return 1;
+            }
             return 0;
-           }
         }
-        if(target==0){
-            return 1;
-        }
-        int nottake=find_rec(arr,indx-1,target);
+        int nottake=find(arr,target,indx-1);
         int take=0;
         if(arr[indx]<=target){
-            take=find_rec(arr,indx,target-arr[indx]);
+            take=find(arr,target-arr[indx],indx);
         }
         return take+nottake;
     }
     public int change(int target, int[] arr) {
-      int ans=find_rec(arr,arr.length-1,target);
-     return ans;
+        int ans=find(arr,target,arr.length-1);
+        if(ans==0){
+            return 0;
+        }
+        return ans;
     }
 }
 ```
