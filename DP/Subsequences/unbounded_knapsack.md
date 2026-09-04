@@ -20,7 +20,33 @@ class Solution {
     }
 }
 ```
-
+```
+class Solution {
+    
+    int find(int val[],int wt[],int target,int indx,int dp[][]){
+        if(indx>=val.length){
+            return 0;
+        }
+        if(dp[indx][target]!=-1){
+            return dp[indx][target];
+        }
+        int nottake=find(val,wt,target,indx+1,dp);
+        int take=0;
+        if(wt[indx]<=target){
+            take=val[indx]+find(val,wt,target-wt[indx],indx,dp);
+        }
+        return dp[indx][target]=Math.max(take,nottake);
+    }
+    public int knapSack(int val[], int wt[], int capacity) {
+        // code here
+        int dp[][]=new int[wt.length][capacity+1];
+        for(int i=0;i<wt.length;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return find(val,wt,capacity,0,dp);
+    }
+}
+```
 ```
 class Solution {
     public int knapSack(int val[], int wt[], int target) {
