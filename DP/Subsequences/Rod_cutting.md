@@ -51,3 +51,32 @@ class Solution {
     }
 }
 ```
+
+# Tabulation
+
+```
+class Solution {
+    public int cutRod(int[] arr) {
+        int target=arr.length;
+       int dp[][]=new int[arr.length][target+1];
+       for(int i=0;i<arr.length;i++){
+           dp[i][0]=0;
+       }
+       for(int i=1;i<=target;i++){
+           dp[0][i]=i*arr[0];
+       }
+       for(int i=1;i<arr.length;i++){
+           for(int j=1;j<=target;j++){
+               int nottake=dp[i-1][j];
+               int take=Integer.MIN_VALUE;
+               int length=i+1;
+               if(length<=j){
+                   take=arr[i]+dp[i][j-length];
+               }
+               dp[i][j]=Math.max(take,nottake);
+           }
+       }
+       return dp[arr.length-1][target];
+    }
+}
+```
