@@ -2,6 +2,27 @@
 
 ```
 class Solution {
+    
+    int find(int val[],int wt[],int target,int indx){
+        if(indx>=val.length){
+            return 0;
+        }
+        int nottake=find(val,wt,target,indx+1);
+        int take=0;
+        if(wt[indx]<=target){
+            take=val[indx]+find(val,wt,target-wt[indx],indx);
+        }
+        return Math.max(take,nottake);
+    }
+    public int knapSack(int val[], int wt[], int capacity) {
+        // code here
+        return find(val,wt,capacity,0);
+    }
+}
+```
+
+```
+class Solution {
     public int knapSack(int val[], int wt[], int target) {
         int dp[][]=new int[wt.length][target+1];
         for(int i=0;i<wt.length;i++){
