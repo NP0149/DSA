@@ -35,35 +35,36 @@
 
 ```
 class Solution {
-    static int find_rec(int arr[],int indx,int target,int dp[][]){
+    int find(int arr[],int target,int indx,int dp[][]){
+          if(target==0){
+            return 1;
+        }
         if(indx==0){
-           if(target%arr[0]==0){
-            return 1;
-           }
-           else{
+            if(target%arr[0]==0){
+                return 1;
+            }
             return 0;
-           }
         }
-        if(target==0){
-            return 1;
-        }
-        if(dp[indx][target]!=-1){
-            return dp[indx][target];
-        }
-        int nottake=find_rec(arr,indx-1,target,dp);
+       if(dp[indx][target]!=-1){
+         return dp[indx][target];
+       }
+        int nottake=find(arr,target,indx-1,dp);
         int take=0;
         if(arr[indx]<=target){
-            take=find_rec(arr,indx,target-arr[indx],dp);
+            take=find(arr,target-arr[indx],indx,dp);
         }
         return dp[indx][target]=take+nottake;
     }
     public int change(int target, int[] arr) {
         int dp[][]=new int[arr.length][target+1];
-        for(int a[]:dp){
-            Arrays.fill(a,-1);
+        for(int i=0;i<arr.length;i++){
+            Arrays.fill(dp[i],-1);
         }
-      int ans=find_rec(arr,arr.length-1,target,dp);
-     return ans;
+        int ans=find(arr,target,arr.length-1,dp);
+        if(ans==0){
+            return 0;
+        }
+        return ans;
     }
 }
 ```
