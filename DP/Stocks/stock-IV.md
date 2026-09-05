@@ -30,3 +30,41 @@ class Solution {
     }
 }
 ```
+# Memoisation
+```
+class Solution {
+    int find(int arr[],int indx,int buy,int k,int dp[][][]){
+        if(indx>=arr.length){
+            return 0;
+        }
+        if(k==0){
+            return 0;
+        }
+        if(dp[indx][buy][k]!=-1){
+            return dp[indx][buy][k];
+        }
+        int profit=0;
+        if(buy==1){
+            int take=find(arr,indx+1,0,k,dp)-arr[indx];
+            int nottake=find(arr,indx+1,1,k,dp);
+             profit=Math.max(take,nottake);
+        }
+        else{
+            int take=find(arr,indx+1,1,k-1,dp)+arr[indx];
+            int nottake=find(arr,indx+1,0,k,dp);
+           profit=Math.max(take,nottake);
+        }
+        return dp[indx][buy][k]=profit;
+    }
+    public int maxProfit(int k, int[] arr) {
+        int dp[][][]=new int[arr.length][2][k+1];
+        for(int[][]a:dp){
+            for(int[]b:a){
+                Arrays.fill(b,-1);
+            }
+        }
+        return find(arr,0,1,k,dp);
+    }
+}
+
+```
