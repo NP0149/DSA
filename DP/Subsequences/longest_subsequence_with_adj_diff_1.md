@@ -67,3 +67,25 @@ class Solution {
 }
 
 ```
+```
+class Solution {
+    public int longestSubseq(int[] arr) {
+       HashMap<Integer,Integer> hm=new HashMap<>();
+       int maxlen=0;
+       for(int i=0;i<arr.length;i++){
+           int len1=hm.getOrDefault(arr[i]-1,0);
+           int len2=hm.getOrDefault(arr[i]+1,0);
+           
+           int curr=1+Math.max(len1,len2);
+           
+           
+           hm.put(arr[i],curr);
+           
+           maxlen=Math.max(maxlen,curr);
+           
+       }
+       return maxlen;
+    }
+}
+
+```
