@@ -38,3 +38,62 @@ class Solution {
     }
 }
 ```
+
+```
+class dsu{
+    int rank[];
+    int parent[];
+    dsu(int n){
+        rank=new int[n];
+        parent=new int[n];
+        for(int i=0;i<n;i++){
+            rank[i]=0;
+            parent[i]=i;
+        }
+    }
+    int find(int node){
+        if(parent[node]!=node){
+            return parent[node]=find(parent[node]);
+        }
+        return parent[node];
+    }
+    void union(int x,int y){
+        int p1=find(x);
+        int p2=find(y);
+        if(p1!=p2){
+            if(rank[p1]>rank[p2]){
+                parent[p2]=p1;
+                rank[p2]++;
+            }
+            else if(rank[p1]<rank[p2]){
+                parent[p1]=p2;
+                rank[p1]++;
+            }
+            else{
+                parent[p1]=p2;
+                rank[p2]++;
+            }
+        }
+    }
+}
+
+class Solution {
+    public int findCircleNum(int[][] arr) {
+       dsu d=new dsu(arr.length);
+       for(int i=0;i<arr.length;i++){
+        for(int j=0;j<arr[0].length;j++){
+            if(arr[i][j]==1){
+                d.union(i,j);
+            }
+        }
+       }
+       int count=0;
+       for(int i=0;i<arr.length;i++){
+        if(d.parent[i]==i){
+            count++;
+        }
+       }
+       return count;
+    }
+}
+```
