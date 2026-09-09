@@ -1,5 +1,8 @@
 # number of islands
 
+
+[Problem link](https://leetcode.com/problems/number-of-islands/)
+
 ```
 class Solution {
     static int rows[]={-1,0,1,0};
