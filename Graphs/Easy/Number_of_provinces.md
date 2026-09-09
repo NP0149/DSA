@@ -1,5 +1,7 @@
 # Number of provinces
 
+[Problem Link](https://leetcode.com/problems/number-of-provinces/description/)
+
 ```
 class Solution {
     static void dfs(List<List<Integer>> li,int indx,boolean visited[]){
