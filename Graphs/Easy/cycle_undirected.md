@@ -1,5 +1,50 @@
 # Cycle undirected
 
+# DFS
+
+```
+class Solution {
+ boolean dfs(int visited[],int indx,int parent,List<List<Integer>> li){
+     visited[indx]=1;
+     for(int num:li.get(indx)){
+         if(visited[num]!=1){
+             if(dfs(visited,num,indx,li)==true){
+                 return true;
+             }
+         }
+         else if(num!=parent){
+             return true;
+         }
+     }
+     return false;
+ }
+    public boolean isCycle(int V, int[][] edges) {
+      List<List<Integer>> li=new ArrayList<>();
+      
+      for(int i=0;i<V;i++){
+          li.add(new ArrayList<>());
+      }
+      for(int i=0;i<edges.length;i++){
+          int u=edges[i][0];
+          int v1=edges[i][1];
+          li.get(u).add(v1);
+          li.get(v1).add(u);
+      }
+      int visited[]=new int[V];
+      for(int i=0;i<V;i++){
+          if(visited[i]==0){
+              if(dfs(visited,i,-1,li)){
+                  return true;
+              }
+          }
+      }
+      return false;
+      
+    }
+}
+```
+
+# BFS
 ```
 class Solution {
     static class pair{
