@@ -55,3 +55,60 @@ public class jarus_1 {
 
 }
 ```
+
+
+
+```
+import java.util.*;
+
+class Product{
+    String name;
+    double price;
+    Product(String name,double price){
+        this.name=name;
+        this.price=price;
+    }
+    double calfinalprice(){
+      return 0;
+    }
+    double afterdis(){
+        return price-price*0.10;
+    }
+}
+class digitalpro extends Product{
+    digitalpro(String name,double price){
+        super(name,price);
+    }
+    double calfinalprice(){
+        double after=afterdis();
+        double tax=after*0.18;
+        return after+tax;
+    }
+}
+class physicalpro extends Product{
+    physicalpro(String name,double price){
+        super(name,price);
+    }
+    double calfinalprice(){
+        double after=afterdis();
+        double tax=after*0.10;
+        return after+tax;
+    }
+}
+
+
+public class jarus_1 {
+    public static void main(String args[]){
+        List<Product> cart=new ArrayList<>();
+        cart.add(new digitalpro("dbcjdc",2000));
+        cart.add(new physicalpro("wncdhjc",200));
+        int total=0;
+        for(Product p:cart){
+           double price=p.calfinalprice();
+           total+=price;
+            System.out.println(p.name+p.price+price);
+        }
+        System.out.println("the total payable "+total);
+    }
+}
+```
