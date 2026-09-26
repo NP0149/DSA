@@ -127,3 +127,30 @@ class Solution {
     }
 }
 ```
+```
+   public int count(int arr[], int sum) {
+        int dp[][]=new int[arr.length][sum+1];
+        int prev[]=new int[sum+1];
+          prev[0]=1;
+        for(int j = 1; j <= sum; j++){
+              if(j % arr[0] == 0){
+                  prev[j] = 1;
+              }
+          }
+         for(int i=1;i<arr.length;i++){
+             int curr[]=new int[sum+1];
+             curr[0]=1;
+             for(int j=1;j<=sum;j++){
+                 int nottake=prev[j];
+                 int take=0;
+                 if(arr[i]<=j){
+                     take=curr[j-arr[i]];
+                 }
+                 curr[j]=take+nottake;
+             }
+             prev=curr;
+         }
+         return prev[sum];
+    }
+}
+```
