@@ -52,5 +52,21 @@ class Solution {
 # Tabulation
 
 ```
-
+class Solution {
+    public int lis(int arr[]) {
+      int dp[][]=new int[arr.length+1][arr.length+1];
+      int n=arr.length;
+      for(int indx=n-1;indx>=0;indx--){
+          for(int prev=indx-1;prev>=-1;prev--){
+              int nottake=dp[indx+1][prev+1];
+              int take=0;
+              if(prev==-1 || arr[indx]>arr[prev]){
+                  take=1+dp[indx+1][indx+1];
+              }
+              dp[indx][prev+1]=Math.max(take,nottake);
+          }
+      }
+      return dp[0][0];
+    }
+}
 ```
