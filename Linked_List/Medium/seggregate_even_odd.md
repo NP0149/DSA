@@ -99,3 +99,43 @@ class Solution {
 Time:O(n)
 
 Space:O(1)
+
+# Optimal -II
+
+## you need to first store the next=temp.next value because when u are assinging the temp to odd to ven you are changing the links there
+
+```
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        int count=0;
+        if(head==null){
+            return null;
+        }
+        if(head.next==null){
+            return head;
+        }
+        ListNode temp=head;
+          ListNode oddhead=head;
+        ListNode odd=oddhead;
+        ListNode evenhead=head.next;
+        ListNode even=evenhead;
+        while(temp!=null){
+            ListNode next=temp.next;
+            count++;
+            if(count%2==0){
+              even.next=temp;
+              even=even.next;
+            }
+            else{
+                odd.next=temp;
+                odd=odd.next;
+            }
+            temp=next;
+        }
+        odd.next=null;
+        even.next=null;
+        odd.next=evenhead;
+        return oddhead;
+    }
+}
+```
