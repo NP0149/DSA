@@ -2,6 +2,44 @@
 
 [Problem link](https://www.geeksforgeeks.org/problems/flattening-a-linked-list/1)
 
+
+## consider every list first node as head traverse to the end and add the integer values into the list and then sort tehn create new linked list and return
+
+```
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        List<Integer> li=new ArrayList<>();
+        for(ListNode head:lists){
+            ListNode temp=head;
+            while(temp!=null){
+                li.add(temp.val);
+                temp=temp.next;
+            }
+        }
+        Collections.sort(li);
+        if(li.size()==0){
+            return null;
+        }
+        ListNode head=new ListNode(li.get(0));
+        ListNode tail=head;
+        for(int i=1;i<li.size();i++){
+            ListNode newnode=new ListNode(li.get(i));
+            if(head.next==null){
+                head.next=newnode;
+                tail.next=newnode;
+                tail=newnode;
+            }
+            else{
+                tail.next=newnode;
+                tail=newnode;
+            }
+        }
+        return head;
+    }
+}
+```
+
+
 # Approach-I
 
 ```
