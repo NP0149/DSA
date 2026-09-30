@@ -1,5 +1,7 @@
 # Brute
 
+[Problem Link](https://leetcode.com/problems/path-with-minimum-effort/description/)
+
 ```
 class Solution {
     static int min_abs;
