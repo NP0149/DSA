@@ -1,5 +1,7 @@
 # number of enclaves
 
+[Problem Link](https://leetcode.com/problems/number-of-enclaves/)
+
 ```
 class Solution {
     static int rows[]={-1,0,1,0};
