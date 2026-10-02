@@ -1,47 +1,50 @@
 [Problem Link](https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
 
-
 ```
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    TreeMap<Integer,TreeMap<Integer,ArrayList<Integer>> tm=new TreeMap<>();
-    void dfs(TreeNode root,int row,int col){
-        if(root==null){
-            return;
-        }
-        tm.putIfAbsent(col,new TreeMap<>());
-        tm.get(col).putIfAbsent(row,new ArrayList<>());
-        tm.get(col).get(row).add(root.val);
+/* Structure of binary tree node
+class Node {
+    int data;
+    Node left;
+    Node right;
 
-        dfs(root.left,row+1,col-1);
-        dfs(root.right,row+1,col+1);
+    Node(int val) {
+        data = val;
+        left = right = null;
     }
-    public List<List<Integer>> verticalTraversal(TreeNode root) {
-       dfs(root,0,0);
-       List<List<Integer>> ans=new ArrayList<>();
-      for(TreeMap<Integer,ArrayList<Integer>> rows:tm.values()){
-        List<Integer> temp=new ArrayList<>();
-        for(ArrayList<Integer> li:rows.values()){
-            Collections.sort(li);
-            temp.addAll(li);
+}*/
+
+class Solution {
+    class pair{
+        Node node;
+        int col;
+        pair(Node node,int col){
+            this.node=node;
+            this.col=col;
         }
-        ans.add(temp);
-      }
-      return ans;
+    }
+    public ArrayList<ArrayList<Integer>> verticalOrder(Node root) {
+        ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
+        Queue<pair> q=new LinkedList<>();
+        q.add(new pair(root,0));
+        TreeMap<Integer,ArrayList<Integer>> tm=new TreeMap<>();
+        while(!q.isEmpty()){
+            pair p=q.poll();
+            Node node=p.node;
+            int col=p.col;
+            tm.putIfAbsent(col,new ArrayList<>());
+            tm.get(col).add(node.data);
+            if(node.left!=null){
+                q.add(new pair(node.left,col-1));
+            }
+            if(node.right!=null){
+                q.add(new pair(node.right,col+1));
+            }
+        }
+        for(ArrayList<Integer> li:tm.values()){
+            ans.add(li);
+        }
+        return ans;
     }
 }
+
 ```
