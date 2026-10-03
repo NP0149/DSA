@@ -3,6 +3,45 @@
 [Problem Link](https://leetcode.com/problems/minimum-falling-path-sum/)
 
 # recurrsion
+```
+import java.util.*;
+
+public class subarray_sum_k {
+    static int min_sum;
+    static void find(int arr[][],int row,int col,int score){
+        if(row==arr.length-1){
+            min_sum=Math.min(min_sum,score+arr[row][col]);
+            return;
+        }
+        if(row+1<arr.length && col-1>=0){
+            find(arr,row+1,col-1,score+arr[row][col]);
+        }
+        if(row+1<arr.length && col>=0 && col<arr[0].length){
+            find(arr,row+1,col,score+arr[row][col]);
+        }
+        if(row+1<arr.length && col+1<arr[0].length){
+            find(arr,row+1,col+1,score+arr[row][col]);
+        }
+    }
+    public static void main(String args[]){
+//        int arr[][]={{2,1,3},{6,5,4},{7,8,9}};
+//        int arr[][]={{-19,57},{-40,-5}};
+        int arr[][]={{-80,-13,22},{83,94,-5},{73,-48,61}};
+        int min=Integer.MAX_VALUE;
+        min_sum=Integer.MAX_VALUE;
+        int src[]=new int[2];
+        for(int i=0;i<arr[0].length;i++){
+            if(min>arr[0][i]){
+                min=arr[0][i];
+                src[0]=0;
+                src[1]=i;
+            }
+        }
+        find(arr,src[0],src[1],0);
+        System.out.println(min_sum);
+    }
+}
+```
 
 ```
 class Solution {
