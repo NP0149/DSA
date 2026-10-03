@@ -5,29 +5,25 @@
 
 ```
 class Solution {
-    static int maxlen;
-       void find(int arr[],int indx,int prev,List<Integer> li,List<Integer> ans){
+    List<Integer> ans=new ArrayList<>();
+    void find(int arr[],int prev,int indx,List<Integer> li){
         if(indx>=arr.length){
-            if(maxlen<li.size()){
-                maxlen=li.size();
-                ans.clear();
-                ans.addAll(li);
+            if(li.size()>ans.size()){
+                ans=new ArrayList<>(li);
             }
             return;
         }
-        if(prev==-1 || arr[indx]%arr[prev]==0){
+        if(prev==-1 || arr[prev]%arr[indx]==0 || arr[indx]%arr[prev]==0){
             li.add(arr[indx]);
-            find(arr,indx+1,indx,li,ans);
+            find(arr,indx,indx+1,li);
             li.remove(li.size()-1);
         }
-        find(arr,indx+1,prev,li,ans);
-       }
+        find(arr,prev,indx+1,li);
+    }
     public List<Integer> largestDivisibleSubset(int[] arr) {
-        maxlen=0;
-        Arrays.sort(arr);
         List<Integer> li=new ArrayList<>();
-        List<Integer> ans=new ArrayList<>();
-        find(arr,0,-1,li,ans);
+        Arrays.sort(arr);
+       find(arr,-1,0,li);
         return ans;
     }
 }
