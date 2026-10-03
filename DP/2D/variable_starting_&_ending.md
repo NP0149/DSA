@@ -5,6 +5,28 @@
 # Recurrsion
 
 ```
+class Solution {
+    static int min_sum;
+    void find(int arr[][],int row,int col,int score){
+        if(row<0 || row>arr.length-1 || col<0 || col>arr[0].length-1){
+            return ;
+        }
+        if(row==arr.length-1){
+            min_sum=Math.min(min_sum,score+arr[row][col]);
+            return;
+        }
+        find(arr,row+1,col-1,score+arr[row][col]);
+        find(arr,row+1,col,score+arr[row][col]);
+        find(arr,row+1,col+1,score+arr[row][col]);
+    }
+    public int minFallingPathSum(int[][] arr) {
+        min_sum=Integer.MAX_VALUE;
+        for(int i=0;i<arr[0].length;i++){
+          find(arr,0,i,0);
+        }
+        return min_sum;
+    }
+}
 ```
 
 
