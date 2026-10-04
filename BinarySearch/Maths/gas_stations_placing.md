@@ -2,6 +2,35 @@
 
 [Problem Link](https://www.geeksforgeeks.org/problems/minimize-max-distance-to-gas-station/1)
 
+
+```
+class Solution {
+    public double minMaxDist(int[] arr, int k) {
+        // code here
+        PriorityQueue<int[]> pq=new PriorityQueue<>((a,b)->Double.compare((double)b[0]/b[1],(double)a[0]/a[1]));
+        for(int i=0;i<arr.length-1;i++){
+            int dis=arr[i+1]-arr[i];
+            pq.add(new int[]{dis,1});
+        }
+        while(k>0){
+            int curr[]=pq.poll();
+            int dis=curr[0];
+            int parts=curr[1];
+            parts++;
+            pq.add(new int[]{dis,parts});
+            k--;
+        }
+        double max=Double.MIN_VALUE;
+        while(!pq.isEmpty()){
+            int curr[]=pq.poll();
+            max=Math.max(max,(double)curr[0]/curr[1]);
+        }
+        
+        return max;
+    }
+}
+```
+
 # Optimal Approach
 
 ```
