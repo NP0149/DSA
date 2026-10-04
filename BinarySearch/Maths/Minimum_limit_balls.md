@@ -6,39 +6,35 @@
 
 ```
 class Solution {
-    public static int fun(int arr[],int k,int m){
+    int isvalid(int arr[],long mid,int maxop){
+        int count=0;
         for(int i=0;i<arr.length;i++){
-         int temp=arr[i]/k;
-         if(arr[i]%k!=0){
-            temp++;
-         }
-         temp--;
-         m-=temp;
+            count+=(arr[i]-1)/mid;
+            if(count>maxop){
+                return 0;
+            }
         }
-       if(m>=0){
         return 1;
-       }
-       else{
-        return 0;
-       }
     }
-    public int minimumSize(int[] arr, int m) {
-        int low=1;
-        int high=(int)Math.pow(10,9);
-        Arrays.sort(arr);
-        int ans=-1;
-        while(low<=high){
-            int mid=low+(high-low)/2;
-            int t=fun(arr,mid,m);
-            if(t==1){
-                ans=mid;
-             high=mid-1;
-            }
-            else{
-                low=mid+1;
-            }
+    public int minimumSize(int[] arr,int maxop) {
+        long low=1;
+        long high=0;
+        for(int i=0;i<arr.length;i++){
+            high=Math.max(high,arr[i]);
         }
-        return ans;
+       long ans=-1;
+        while(low<=high){
+          long mid=low+(high-low)/2;
+        int check=isvalid(arr,mid,maxop);
+        if(check==1){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+        }
+        return (int)ans;
     }
 }
 
