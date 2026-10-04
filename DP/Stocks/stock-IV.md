@@ -68,3 +68,34 @@ class Solution {
 }
 
 ```
+```
+class Solution {
+
+    public int maxProfit(int k, int[] arr) {
+
+        int n = arr.length;
+
+        int[][][] dp = new int[n + 1][2][k + 1];
+
+        for (int indx = n - 1; indx >= 0; indx--) {
+
+            for (int cap = 1; cap <= k; cap++) {
+
+                // buy == 1
+                int take = dp[indx + 1][0][cap] - arr[indx];
+                int nottake = dp[indx + 1][1][cap];
+
+                dp[indx][1][cap] = Math.max(take, nottake);
+
+                // buy == 0
+                take = dp[indx + 1][1][cap - 1] + arr[indx];
+                nottake = dp[indx + 1][0][cap];
+
+                dp[indx][0][cap] = Math.max(take, nottake);
+            }
+        }
+
+        return dp[0][1][k];
+    }
+}
+```
