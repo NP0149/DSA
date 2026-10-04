@@ -67,3 +67,33 @@ class Solution {
     }
 }
 ```
+# Tabulation
+
+```
+class Solution {
+
+    public int maxProfit(int[] arr, int fee) {
+
+        int n = arr.length;
+
+        int[][] dp = new int[n + 1][2];
+
+        for (int indx = n - 1; indx >= 0; indx--) {
+
+            // buy == 1
+            int take = dp[indx + 1][0] - arr[indx];
+            int nottake = dp[indx + 1][1];
+
+            dp[indx][1] = Math.max(take, nottake);
+
+            // buy == 0
+            take = dp[indx + 1][1] + arr[indx] - fee;
+            nottake = dp[indx + 1][0];
+
+            dp[indx][0] = Math.max(take, nottake);
+        }
+
+        return dp[0][1];
+    }
+}
+```
