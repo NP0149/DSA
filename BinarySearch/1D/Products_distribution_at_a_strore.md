@@ -15,7 +15,6 @@ class Solution {
          if(arr[i]%limit!=0){
             temp++;
          }
-        //  int temp=(int)Math.ceil((double)arr[i]/limit);
              k-=temp;
              if(k<0){
                 return 0;
