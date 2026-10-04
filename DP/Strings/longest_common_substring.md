@@ -2,6 +2,38 @@
 # Longest common substring
 
 ```
+class Solution {
+
+    int find(String s1, String s2, int i, int j, int count) {
+
+        // Base case
+        if (i == s1.length() || j == s2.length()) {
+            return count;
+        }
+
+        int same = count;
+
+        // If characters match, continue the substring
+        if (s1.charAt(i) == s2.charAt(j)) {
+            same = find(s1, s2, i + 1, j + 1, count + 1);
+        }
+
+        // Start a new substring
+        int move1 = find(s1, s2, i + 1, j, 0);
+        int move2 = find(s1, s2, i, j + 1, 0);
+
+        return Math.max(same, Math.max(move1, move2));
+    }
+
+    public int longestCommonSubstr(String s1, String s2) {
+        return find(s1, s2, 0, 0, 0);
+    }
+}
+```
+
+
+
+```
 import java.util.*;
 
 public class lcs {
