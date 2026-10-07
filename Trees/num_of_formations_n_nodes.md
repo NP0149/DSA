@@ -8,14 +8,14 @@ class Solution {
 
         dp[0] = 1;
 
-        for (int nodes = 1; nodes <= n; nodes++) {
+        for (int i = 1; i <= n; i++) {
 
-            for (int root = 0; root < nodes; root++) {
+            for (int j = 0; j < i; i++) {
 
-                int left = root;
-                int right = nodes - 1 - root;
+                int left = j;
+                int right = i - 1 - j;
 
-                dp[nodes] += dp[left] * dp[right];
+                dp[i] += dp[left] * dp[right];
             }
         }
 
