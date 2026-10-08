@@ -35,7 +35,8 @@ public class infixtopostfix {
             }
            else{
                if(!st.isEmpty() && getprecedence(st.peek())>=getprecedence(ch)){
-                   while( !st.isEmpty() && getprecedence(st.peek())>getprecedence(ch) || (getprecedence(st.peek())==getprecedence(ch) && st.peek()!='^')){
+                   while( !st.isEmpty() && getprecedence(st.peek())>getprecedence(ch) ||
+     (getprecedence(st.peek())==getprecedence(ch) && st.peek()!='^')){
                        sb.append(st.pop());
                    }
                }
