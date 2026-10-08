@@ -4,6 +4,34 @@
 
 ```
 class Solution {
+    boolean find(int arr[],int indx){
+        if(indx>=arr.length-1){
+            return true;
+        }
+        for(int i=1;i<=arr[indx];i++){
+            if(find(arr,indx+i)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean canJump(int[] arr) {
+        if(arr.length==1){
+            return true;
+        }
+        if(arr[0]==arr.length-1){
+            return true;
+        }
+        return find(arr,0);
+    }
+}
+```
+
+
+
+
+```
+class Solution {
     public boolean canJump(int[] nums) {
         int maxReach = 0; // Maximum index we can reach
 
