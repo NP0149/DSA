@@ -2,6 +2,30 @@
 
 [Problem Link](https://leetcode.com/problems/jump-game/description/?envType=study-plan-v2&envId=top-interview-150)
 
+# Optimised
+
+```
+class Solution {
+    public boolean canJump(int[] arr) {
+        int currend=0;
+        int farend=0;
+        for(int i=0;i<arr.length;i++){
+         farend=Math.max(farend,i+arr[i]);
+         if(i==currend){
+            currend=farend;
+            if(currend>=arr.length-1){
+                return true;
+            }
+            if(currend==i){
+                return false;
+            }
+         }
+        }
+        return false;
+    }
+}
+```
+
 # recurrsion
 
 ```
