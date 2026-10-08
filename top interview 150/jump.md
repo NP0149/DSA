@@ -2,6 +2,8 @@
 
 [Problem Link](https://leetcode.com/problems/jump-game/description/?envType=study-plan-v2&envId=top-interview-150)
 
+# recurrsion
+
 ```
 class Solution {
     boolean find(int arr[],int indx){
@@ -26,9 +28,41 @@ class Solution {
     }
 }
 ```
+# Memoisation
+```
+class Solution {
+    int find(int arr[],int indx,int dp[]){
+        if(indx>=arr.length-1){
+            return 1;
+        }
+        if(dp[indx]!=-1){
+            return dp[indx];
+        }
+        for(int i=1;i<=arr[indx];i++){
+            if(find(arr,indx+i,dp)==1){
+                return dp[indx]=1;
+            }
+        }
+        return dp[indx]=0;
+    }
+    public boolean canJump(int[] arr) {
+        if(arr.length==1){
+            return true;
+        }
+        if(arr[0]==arr.length-1){
+            return true;
+        }
+        int dp[]=new int[arr.length];
+        Arrays.fill(dp,-1);
+        return find(arr,0,dp)==1;
+    }
+}
+```
+# Tabulation
 
+```
 
-
+```
 
 ```
 class Solution {
