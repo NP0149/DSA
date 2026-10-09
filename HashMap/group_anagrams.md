@@ -1,3 +1,35 @@
+# Optimised
+
+[Problem Link](https://www.geeksforgeeks.org/problems/print-anagrams-together/1)
+
+
+```
+class Solution {
+    public ArrayList<ArrayList<String>> anagrams(String[] arr) {
+        // code here
+        HashMap<String,ArrayList<String>> hm=new HashMap<>();
+        for(String s:arr){
+            int freq[]=new int[26];
+            for(char ch:s.toCharArray()){
+                freq[ch-'a']++;
+            }
+            StringBuilder sb=new StringBuilder();
+            for(int count:freq){
+                sb.append('#').append(count);
+            }
+            String key=sb.toString();
+            hm.putIfAbsent(key,new ArrayList<>());
+            hm.get(key).add(s);
+        }
+        return new ArrayList<>(hm.values());
+    }
+}
+```
+
+
+
+
+
 ```
 class Solution {
     boolean find(String s,String t){
