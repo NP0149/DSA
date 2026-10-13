@@ -5,23 +5,20 @@
 
 ```
 class Solution {
-    public ArrayList<ArrayList<String>> anagrams(String[] arr) {
-        // code here
-        HashMap<String,ArrayList<String>> hm=new HashMap<>();
-        for(String s:arr){
-            int freq[]=new int[26];
-            for(char ch:s.toCharArray()){
-                freq[ch-'a']++;
-            }
-            StringBuilder sb=new StringBuilder();
-            for(int count:freq){
-                sb.append('#').append(count);
-            }
-            String key=sb.toString();
-            hm.putIfAbsent(key,new ArrayList<>());
-            hm.get(key).add(s);
-        }
-        return new ArrayList<>(hm.values());
+    public List<List<String>> groupAnagrams(String[] arr) {
+        HashMap<String,List<String>> hm=new HashMap<>();
+       for(String s:arr){
+         char ch[]=s.toCharArray();
+         Arrays.sort(ch);
+         String newstring=new String(ch);
+         hm.putIfAbsent(newstring,new ArrayList<>());
+         hm.get(newstring).add(s);
+       }
+       List<List<String>> li=new ArrayList<>();
+       for(List<String> al:hm.values()){
+        li.add(al);
+       }
+       return li;
     }
 }
 ```
