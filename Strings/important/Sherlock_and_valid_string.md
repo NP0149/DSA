@@ -51,3 +51,11 @@ class Result {
 }
 
 ```
+
+
+# Complexity
+
+
+Time:O(N)
+
+Space:O(1)
