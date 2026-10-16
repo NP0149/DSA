@@ -3,6 +3,13 @@
 [Problem Link](https://www.geeksforgeeks.org/problems/count-always-found/1)
 
 
+
+## the number is always included in searching when all the elements in the left are lesser than the number and all the elements in right are greater than the numebr
+
+## so to check the condition just find the max value in left side and min value in the right side
+
+## the left_max<arr[i]<right_max  ,so if this condition becomes true then the number is always included
+
 ```
 class Solution {
     public int countAlwaysFound(int[] arr) {
