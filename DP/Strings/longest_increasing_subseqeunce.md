@@ -74,3 +74,22 @@ class Solution {
 }
 
 ```
+
+```
+class Solution {
+    int find(int arr[],int prev,int indx){
+        if(indx>=arr.length){
+            return 0;
+        }
+        int take=0;
+        if(prev==-1 || arr[prev]<arr[indx]){
+            take=1+find(arr,indx,indx+1);
+        }
+        int nottake=find(arr,prev,indx+1);
+        return Math.max(take,nottake);
+    }
+    public int lengthOfLIS(int[] arr) {
+        return find(arr,-1,0);
+    }
+}
+```
