@@ -39,3 +39,40 @@ class Solution {
     }
 }
 ```
+
+# Optimised
+
+```
+class Solution {
+    public boolean isPossible(int n, int m, String s) {
+        // code here
+        int col=0;
+        int row=0;
+        int mincol=0;
+        int minrow=0;
+        int maxcol=0;
+        int maxrow=0;
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(ch=='L'){
+                col-=1;
+            }
+            else if(ch=='R'){
+                col+=1;
+            }
+            else if(ch=='U'){
+                row-=1;
+            }
+            else if(ch=='D'){
+                row+=1;
+            }
+            
+            minrow=Math.min(minrow,row);
+            maxrow=Math.max(maxrow,row);
+            mincol=Math.min(mincol,col);
+            maxcol=Math.max(maxcol,col);
+        }
+          return (maxrow-minrow<n) && (maxcol-mincol<m);
+    }
+}
+```
