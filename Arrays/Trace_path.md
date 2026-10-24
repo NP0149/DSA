@@ -42,6 +42,29 @@ class Solution {
 
 # Optimised
 
+## here u need to to check the max path they travelled so that we are considering max row and min row and max col and min col of they are less than the mentioned row 
+
+## and mentioned column then it is valid 
+
+```
+3. How do we get this intuition?
+This is the most important part of the problem.
+
+Imagine I give you a piece of string and ask you to place it inside a rectangular box.
+
+The string follows a particular path, including all its turns.
+
+You can move the entire string anywhere inside the box, but you cannot stretch it or change its shape.
+
+What do you need to check?
+
+You need to check whether the string fits inside the box.
+
+You don't need to try placing it at every possible position. You only need to determine how much space it requires.
+
+That is exactly what this problem is asking us to do with the movement path.
+```
+
 ```
 class Solution {
     public boolean isPossible(int n, int m, String s) {
