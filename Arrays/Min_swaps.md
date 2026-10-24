@@ -7,6 +7,52 @@
 ## then creating a hashmap and then storing the target indexes like where the number need to be placed and then applying 
 
 ## cycle detection code will detect cycle and then will add swaps+=cycle-1
+
+# new approach
+
+### just store like temp[number][sum of number][index]  sort this 2 d array and then detect cycle
+
+```
+class Solution {
+    int find_sum(int n){
+        int sum=0;
+        while(n!=0){
+            int rem=n%10;
+            sum+=rem;
+            n=n/10;
+        }
+        return sum;
+    }
+    public int minSwaps(int[] arr) {
+        int temp[][]=new int[arr.length][3];
+        for(int i=0;i<arr.length;i++){
+            temp[i][0]=arr[i];
+            temp[i][1]=find_sum(arr[i]);
+            temp[i][2]=i;
+        }
+        Arrays.sort(temp,(a,b)->{
+            if(a[1]!=b[1]) return Integer.compare(a[1],b[1]);
+            return Integer.compare(a[0],b[0]);
+        });
+        int swaps=0;
+        boolean visited[]=new boolean[arr.length];
+        for(int i=0;i<arr.length;i++){
+            if(visited[i] || temp[i][2]==i){
+                continue;
+            }
+            int j=i;
+            int cycle=0;
+            while(!visited[j]){
+                visited[j]=true;
+                j=temp[j][2];
+                cycle++;
+            }
+            swaps+=cycle-1;
+        }
+        return swaps;
+    }
+}
+```
 ```
 class Solution {
     int find_sum(int n){
