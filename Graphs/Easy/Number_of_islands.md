@@ -69,3 +69,82 @@ class Solution {
     }
 }
 ```
+# UNION
+
+```
+class Solution {
+     int parent[];
+     int []size;
+
+     int find(int node){
+        if(parent[node]==node){
+            return node;
+        }
+        return parent[node]=find(parent[node]);
+     }
+
+     void union(int u,int v){
+        int p1=find(u);
+        int p2=find(v);
+        if(p1==p2){
+            return;
+        }
+        if(size[p1]<size[p2]){
+            size[p2]+=size[p1];
+            parent[p1]=p2;
+        }
+        else if(size[p1]>size[p2]){
+            parent[p2]=p1;
+            size[p1]+=size[p2];
+        }
+        else{
+            parent[p2]=p1;
+            size[p1]+=size[p2];
+        }
+     }
+    public int numIslands(char[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
+     int total=n*m;
+
+     parent=new int[total];
+     size=new int[total];
+
+     for(int i=0;i<total;i++){
+        parent[i]=i;
+        size[i]=1;
+     }
+   int count=0;
+   int rows[]={-1,0,1,0};
+   int cols[]={0,1,0,-1};
+
+for(int i=0;i<m;i++){
+    for(int j=0;j<n;j++){
+        if(grid[i][j]=='1'){
+            count++;
+
+            int node=i*n+j;
+
+            for(int k=0;k<4;k++){
+                int newr=i+rows[k];
+                int newc=j+cols[k];
+                int next_node=newr*n+newc;
+
+                if(newr>=0 && newr<m && newc>=0 && newc<n && grid[newr][newc]=='1'){
+                    int p1=find(node);
+                     int p2=find(next_node);
+
+                     if(p1!=p2){
+                        union(node,next_node);
+                        count--;
+                     }
+                }
+            }
+        }
+    }
+}
+  return count;
+
+    }
+}
+```
