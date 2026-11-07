@@ -5,6 +5,80 @@
 
 ```
 class Solution {
+    int parent[];
+    int size[];
+    int used[];
+    int find(int node){
+        if(parent[node]==node){
+            return node;
+        }
+        return parent[node]=find(parent[node]);
+    }
+    void union(int x,int y){
+        int p1=find(x);
+        int p2=find(y);
+        if(p1==p2){
+            return;
+        }
+        if(size[p1]>size[p2]){
+            size[p1]+=size[p2];
+            parent[p2]=p1;
+        }
+        else {
+            size[p2]+=size[p1];
+            parent[p1]=p2;
+        }
+        
+    }
+    public int numIslands(char[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
+        parent=new int[m*n];
+        size=new int[m*n];
+     used=new int[m*n];
+        for(int i=0;i<parent.length;i++){
+          parent[i]=i;
+          size[i]=1;
+          used[i]=0;
+        }
+        int visited[][]=new int[m][n];
+        // int rows[]={-1,0,1,0};
+        // int cols[]={0,1,0,-1};
+       for(int i=0;i<grid.length;i++){
+        for(int j=0;j<grid[0].length;j++){
+          if(grid[i][j]=='1'){
+            int node=i*grid[0].length+j;
+            for(int k=-1;k<=1;k++){
+                for(int t=-1;t<=1;t++){
+                    int newr=i+k;
+                    int newc=j+t;
+                    if(newr>=0 && newr<m && newc>=0 && newc<n && grid[newr][newc]=='1'){
+                       int new_node=newr*grid[0].length+newc;
+                       union(node,new_node);
+                       used[node]=1;
+                       used[new_node]=1;
+                    }
+                }
+            }
+          }
+        }
+       }
+       int count=0;
+       for(int i=0;i<parent.length;i++){
+        if(parent[i]==i && used[i]==1){
+            count++;
+        }
+       }
+   return count;
+
+    }
+}
+
+
+```
+
+```
+class Solution {
     static int rows[]={-1,0,1,0};
     static int cols[]={0,1,0,-1};
     static void dfs(char arr[][],int visited[][],int i,int j){
