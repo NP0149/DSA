@@ -1,23 +1,26 @@
 
 ```
 class Solution {
-    boolean find(TreeNode p,TreeNode q){
-         if(p==null && q==null){
+    int find(TreeNode root){
+      if(root==null){
+        return 0;
+      }
+      int left=find(root.left);
+      int right=find(root.right);
+      return 1+Math.max(left,right);
+    }
+    public boolean isBalanced(TreeNode root) {
+        //your code goes here
+        if(root==null){
             return true;
         }
-        if(p==null || q==null || p.val!=q.val){
+        int left=find(root.left);
+        int right=find(root.right);
+        if(Math.abs(left-right)>1){
             return false;
         }
-        boolean left=find(p.left,q.left);
-        boolean right=find(p.right,q.right);
-        if(left==false || right==false){
-            return false;
-        }
-        return true;
-    }
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-    return find(p,q);
-    }
+        return isBalanced(root.left) && isBalanced(root.right);
+	}
 }
 ```
 
