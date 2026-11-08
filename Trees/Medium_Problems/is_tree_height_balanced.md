@@ -1,6 +1,28 @@
 
 ```
 class Solution {
+    int max_length=Integer.MIN_VALUE;
+    int find(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int left=find(root.left);
+        int right=find(root.right);
+
+        max_length=Math.max(max_length,left+right);
+
+        return 1+Math.max(left,right);
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+        find(root);
+        return max_length;
+    }
+}
+```
+
+
+```
+class Solution {
     int find(TreeNode root){
       if(root==null){
         return 0;
