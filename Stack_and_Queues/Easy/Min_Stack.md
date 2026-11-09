@@ -2,6 +2,42 @@
 
 [Problem Link](https://leetcode.com/problems/min-stack/)
 
+# BEST
+
+```
+class MinStack {
+   Stack<Integer> st;
+   Stack<Integer> min_st;
+    public MinStack() {
+      st=new Stack<>();
+      min_st=new Stack<>();
+    }
+
+    public void push(int val) {
+      st.push(val);
+      if(min_st.isEmpty()){
+        min_st.push(val);
+      }
+      else{
+        min_st.push(Math.min(min_st.peek(),st.peek()));
+      }
+    }
+
+    public void pop() {
+      st.pop();
+      min_st.pop();
+    }
+
+    public int top() {
+      return st.peek();
+    }
+
+    public int getMin() {
+         return min_st.peek();
+    }
+}
+```
+
 # Approach-I
 
 ```
