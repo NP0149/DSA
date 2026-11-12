@@ -39,24 +39,6 @@ public class p1 {
         for(int i=1;i<arr.length;i++){
             prefix[i]=Math.max(prefix[i-1],left[i]);
         }
-        System.out.println();
-        for(int i=0;i<arr.length;i++){
-            System.out.print(arr[i]+" ");
-        }
-        System.out.println();
-        for(int i=0;i<arr.length;i++){
-            System.out.print(left[i]+" ");
-        }
-        System.out.println();
-        for(int i=0;i<arr.length;i++){
-            System.out.print(prefix[i]+" ");
-        }
-
-        System.out.println();
-        for(int i=0;i<arr.length;i++){
-            System.out.print(right[i]+" ");
-        }
-        System.out.println();
   int bestgain=0;
         for (int i=0;i<arr.length;i++){
             bestgain=Math.max(bestgain,prefix[i]+right[i]);
