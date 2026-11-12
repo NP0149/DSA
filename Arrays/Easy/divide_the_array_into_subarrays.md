@@ -2,6 +2,14 @@
 
 [Problem Link](https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-i/description/?envType=daily-question&envId=2026-02-01)
 
+```
+class Solution {
+    public int minimumCost(int[] arr) {
+       Arrays.sort(arr,1,arr.length);
+        return arr[0]+arr[1]+arr[2];
+    }
+}
+```
 
 ```
 class Solution {
