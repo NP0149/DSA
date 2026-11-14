@@ -32,14 +32,14 @@ class Solution {
             }
         }
         int largest=pq.peek();
-       PriorityQueue<Integer> pq1=new PriorityQueue<>(Collections.reverseOrder());
+        pq=new PriorityQueue<>(Collections.reverseOrder());
        for(int i=0;i<li.size();i++){
-        pq1.add(li.get(i));
-         if(pq1.size()>k){
-            pq1.poll();
+        pq.add(li.get(i));
+         if(pq.size()>k){
+            pq.poll();
          }
        }
-       int smallest=pq1.peek();
+       int smallest=pq.peek();
        List<Integer> ans=new ArrayList<>();
        ans.add(smallest);
        ans.add(largest);
