@@ -12,50 +12,41 @@ Then we needed less value so move to high=mid-1
 
 
 ```
-
-//Back-end complete function Template for Java
-
 class Solution {
-    public static int isvalid(int arr[],int mid,int k){
-        int count=1;
-        int sum=0;
+    boolean find(int arr[],long mid,long k){
+        long sum=0;
+        long count=1;
         for(int i=0;i<arr.length;i++){
             if(arr[i]>mid){
-                return 0;
+                return false;
             }
-            if(sum+arr[i]>mid){
-                count++;
-                sum=arr[i];
-            }
-            else{
+            else if(sum+arr[i]<=mid){
                 sum+=arr[i];
             }
-            
+            else{
+               count++;
+                sum=arr[i];
+            }
         }
         if(count<=k){
-            return 1;
+            return true;
         }
-        else{
-            return 0;
-        }
+        return false;
     }
-    public static int findPages(int[] arr, int k) {
+    public int findPages(int[] arr, int k) {
         // code here
-        if(k>arr.length){
+        if(arr.length<k){
             return -1;
         }
-        int low=0;
-        int high=0;
-        int n=arr.length;
-        for(int i=0;i<n;i++){
+        long low=0;
+        long high=0;
+        for(int i=0;i<arr.length;i++){
             high+=arr[i];
         }
-        
-        int ans=-1;
+        long ans=-1;
         while(low<=high){
-            int mid=(low+high)/2;
-            int total=isvalid(arr,mid,k);
-            if(total==1){
+            long mid=low+(high-low)/2;
+            if(find(arr,mid,(long)k)){
                 ans=mid;
                 high=mid-1;
             }
@@ -63,7 +54,7 @@ class Solution {
                 low=mid+1;
             }
         }
-        return ans;
+        return (int)ans;
     }
 }
 ```
