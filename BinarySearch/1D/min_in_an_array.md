@@ -2,6 +2,29 @@
 
 [Problem Link](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/submissions/1679355623/)
 
+```
+class Solution {
+    public int findMin(int[] arr) {
+        int low=0;
+        int high=arr.length-1;
+       int mini=Integer.MAX_VALUE;
+    while(low<high)
+     {
+    int mid=low+(high-low)/2;
+    if(arr[mid]>arr[high]){
+       low=mid+1;
+    }
+    else{
+       high=mid;
+    }
+     }
+
+   return arr[low];
+
+    }
+}
+```
+
 # Approach-I
 
 1)if right array is sorted consider min element and eliminate that subarray consider left sub array and then find min and vic versa
